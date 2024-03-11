@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "212487085452",
+    "project_id": "chatapp-bec7d",
+    "storage_bucket": "chatapp-bec7d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:212487085452:android:a055a66bd92fddd3974aa9",
+        "android_client_info": {
+          "package_name": "com.example.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCCvjmp3WI_tohKfBXL6qJZFD55b9jNh1o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
