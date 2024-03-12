@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "212487085452",
-    "project_id": "chatapp-bec7d",
-    "storage_bucket": "chatapp-bec7d.appspot.com"
+    "project_number": "982977699496",
+    "project_id": "donnavita-cc447",
+    "storage_bucket": "donnavita-cc447.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:212487085452:android:a055a66bd92fddd3974aa9",
+        "mobilesdk_app_id": "1:982977699496:android:e86527587689320dbfec9d",
         "android_client_info": {
-          "package_name": "com.example.app"
+          "package_name": "com.example.projectfinal"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCCvjmp3WI_tohKfBXL6qJZFD55b9jNh1o"
+          "current_key": "AIzaSyAgmkqQnoRMFJDCyNf1zvoBRLCEWPc9pa4"
         }
       ],
       "services": {
