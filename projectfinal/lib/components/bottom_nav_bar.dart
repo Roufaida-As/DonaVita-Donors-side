@@ -15,14 +15,14 @@ class _MyBottomNavBarState extends State<MyBottomNavBar> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 20),
+      padding: const EdgeInsets.symmetric(vertical: 16),
       child: GNav(
           color: Color(0xff1F8B7A),
           activeColor: Color(0xff1F8B7A),
           tabActiveBorder: Border.all(color: Colors.white),
           tabBackgroundColor: Color(0xffFFB72B),
           mainAxisAlignment: MainAxisAlignment.center,
-          tabBorderRadius: 16,
+          tabBorderRadius: 25,
           selectedIndex: _selectedIndex,
           onTabChange: (value) {
             setState(() {
@@ -35,16 +35,35 @@ class _MyBottomNavBarState extends State<MyBottomNavBar> {
           tabs: const [
             GButton(
               icon: Icons.home,
-              text: "Home",
+              text: " Home",
+              textStyle: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: Color(0xff1F8B7A),
+              ),
             ),
             GButton(
               icon: Icons.chat,
-              text: "Chat",
+              text: " Chat",
+              textStyle: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: Color(0xff1F8B7A),
+              ),
             ),
-             GButton(
+            GButton(
+                icon: Icons.notifications_active,
+                text: " Notifications",
+                textStyle: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xff1F8B7A),
+                )),
+            GButton(
               icon: Icons.person,
-              text: "Profile",
-            )
+              text: " Profile",
+              textStyle: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: Color(0xff1F8B7A),
+              ),
+            ),
           ]),
     );
   }
