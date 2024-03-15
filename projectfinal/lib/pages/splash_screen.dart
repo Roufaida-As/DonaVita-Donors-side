@@ -6,6 +6,8 @@ import 'package:projectfinal/pages/Verify_emailPage.dart';
 import 'package:projectfinal/pages/home_page.dart';
 import 'package:projectfinal/pages/login_screen.dart';
 
+
+
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
 
