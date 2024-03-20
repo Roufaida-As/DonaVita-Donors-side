@@ -42,14 +42,10 @@ class _HomeScreenState extends State<HomeScreen> {
   ];
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        backgroundColor: Colors.white,
-        bottomNavigationBar: MyBottomNavBar(onTabChange: navigateBottomBar),
-       
-        body: _pages[_selectedIndex],
-      ),
+    return Scaffold(
+      backgroundColor: Colors.white,
+      bottomNavigationBar: MyBottomNavBar(onTabChange: navigateBottomBar),
+      body: _pages[_selectedIndex],
     );
   }
 }
