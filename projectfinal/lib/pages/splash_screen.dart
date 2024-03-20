@@ -3,13 +3,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:projectfinal/Theme/Colors.dart';
 import 'package:projectfinal/pages/Verify_emailPage.dart';
-import 'package:projectfinal/pages/home_page.dart';
+import 'package:projectfinal/pages/home_screen.dart';
 import 'package:projectfinal/pages/login_screen.dart';
 
-
-
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({Key? key}) : super(key: key);
+  const SplashScreen({super.key});
 
   @override
   State<SplashScreen> createState() => _SplashScreenState();
@@ -17,25 +15,24 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   @override
- void initState() {
+  void initState() {
     super.initState();
     Future.delayed(const Duration(seconds: 3), () {
-        if (FirebaseAuth.instance.currentUser != null) {
-    if (FirebaseAuth.instance.currentUser!.emailVerified == false) {
-      Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (BuildContext context) => VerifyEmail()),
-      );
-    } else {
-      Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (BuildContext context) => HomePage()),
-      );
-    }
-  } else {
-    Navigator.of(context).pushReplacement(
-      MaterialPageRoute(builder: (BuildContext context) => LoginPage()),
-    );
-  }
-
+      if (FirebaseAuth.instance.currentUser != null) {
+        if (FirebaseAuth.instance.currentUser!.emailVerified == false) {
+          Navigator.of(context).pushReplacement(
+            MaterialPageRoute(builder: (BuildContext context) => const VerifyEmail()),
+          );
+        } else {
+          Navigator.of(context).pushReplacement(
+            MaterialPageRoute(builder: (BuildContext context) => const HomeScreen()),
+          );
+        }
+      } else {
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (BuildContext context) => const LoginPage()),
+        );
+      }
     });
   }
 
@@ -54,12 +51,10 @@ class _SplashScreenState extends State<SplashScreen> {
             Image.asset("assets/Icons/logo 2.png", width: 130, height: 102.78),
             Image.asset("assets/Icons/Name.png", width: 145, height: 44),
             Image.asset("assets/Icons/Slogan.png", width: 152, height: 19),
-            SizedBox(height: 100),
+            const SizedBox(height: 100),
           ],
         ),
       ),
     );
   }
 }
-
-

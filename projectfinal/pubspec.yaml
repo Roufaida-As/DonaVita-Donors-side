@@ -39,6 +39,9 @@ dependencies:
   firebase_core: ^2.27.0
   google_nav_bar: ^5.0.6
   firebase_auth: ^4.17.9
+  percent_indicator: ^4.0.1
+  cloud_firestore: ^4.15.9
+  firebase_storage: ^11.6.10
 
 dev_dependencies:
   flutter_test:
@@ -65,6 +68,8 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/Icons/logo 2.png
+    - assets/Icons/Ellipse 8.png
+    - assets/Icons/Rectangle 7.png
     - assets/Icons/Name.png
     - assets/Icons/Slogan.png
   # An image asset can refer to one or more resolution-specific "variants", see

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:projectfinal/components/bottom_nav_bar.dart';
 import 'package:projectfinal/pages/chat_page.dart';
-import 'package:projectfinal/pages/home_page.dart';
+import 'package:projectfinal/pages/homepage%20work/home_page.dart';
 import 'package:projectfinal/pages/notifications_page.dart';
 import 'package:projectfinal/pages/profile_page.dart';
 
@@ -9,10 +9,10 @@ class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomePgeState();
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomePgeState extends State<HomeScreen> {
+class _HomeScreenState extends State<HomeScreen> {
   // this selected index is to control the bottom nav bar
   int _selectedIndex = 0;
 
@@ -47,10 +47,7 @@ class _HomePgeState extends State<HomeScreen> {
       home: Scaffold(
         backgroundColor: Colors.white,
         bottomNavigationBar: MyBottomNavBar(onTabChange: navigateBottomBar),
-        appBar: AppBar(
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-        ),
+       
         body: _pages[_selectedIndex],
       ),
     );
