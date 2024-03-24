@@ -34,6 +34,17 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    // Filter announcements based on category
+    List<Announcement> foodAnnouncements = announcements
+        .where((announcement) => announcement.category == 'food')
+        .toList();
+    List<Announcement> clothesAnnouncements = announcements
+        .where((announcement) => announcement.category == 'clothes')
+        .toList();
+    List<Announcement> moneyAnnouncements = announcements
+        .where((announcement) => announcement.category == 'money')
+        .toList();
+
     return Scaffold(
         appBar: AppBar(
           title: const Text(
@@ -58,13 +69,15 @@ class _HomePageState extends State<HomePage> {
                     ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           backgroundColor: AppColors
-                              .highicons, // Add this line to set the background color
+                              .highicons,
                         ),
                         onPressed: () => {
-                              Navigator.of(context).pushReplacement(
+                              Navigator.of(context).push(
                                 MaterialPageRoute(
                                     builder: (BuildContext context) =>
-                                        const FoodCategory()),
+                                        FoodCategoryPage(
+                                            foodAnnouncements:
+                                                foodAnnouncements)),
                               )
                             },
                         child: const Text(
@@ -79,10 +92,13 @@ class _HomePageState extends State<HomePage> {
                           backgroundColor: AppColors.icons,
                         ),
                         onPressed: () => {
-                              Navigator.of(context).pushReplacement(
+                              Navigator.of(context).push(
                                 MaterialPageRoute(
-                                    builder: (BuildContext context) =>
-                                        const ClothesCategory()),
+                                  builder: (BuildContext context) =>
+                                      ClothesCategoryPage(
+                                          clothesAnnouncements:
+                                              clothesAnnouncements),
+                                ),
                               )
                             },
                         child: const Text(
@@ -98,10 +114,13 @@ class _HomePageState extends State<HomePage> {
                           backgroundColor: AppColors.clear,
                         ),
                         onPressed: () => {
-                              Navigator.of(context).pushReplacement(
+                              Navigator.of(context).push(
                                 MaterialPageRoute(
-                                    builder: (BuildContext context) =>
-                                        const MoneyCtagory()),
+                                  builder: (BuildContext context) =>
+                                      MoneyCategoryPage(
+                                          moneyAnnouncements:
+                                              moneyAnnouncements),
+                                ),
                               )
                             },
                         child: const Text(
@@ -131,7 +150,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   void detailsMethod() {
-    Navigator.of(context).pushReplacement(
+    Navigator.of(context).push(
       MaterialPageRoute(builder: (BuildContext context) => const DetailsPage()),
     );
   }

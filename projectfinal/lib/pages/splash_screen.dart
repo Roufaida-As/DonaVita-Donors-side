@@ -2,7 +2,7 @@ import "dart:async";
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:projectfinal/Theme/Colors.dart';
-import 'package:projectfinal/pages/Verify_emailPage.dart';
+import 'package:projectfinal/pages/verify_email_page.dart';
 import 'package:projectfinal/pages/home_screen.dart';
 import 'package:projectfinal/pages/login_screen.dart';
 

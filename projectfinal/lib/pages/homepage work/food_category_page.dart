@@ -1,17 +1,44 @@
 import 'package:flutter/material.dart';
+import 'package:projectfinal/Theme/Colors.dart';
+import 'package:projectfinal/pages/homepage%20work/annonce_card.dart';
+import 'package:projectfinal/pages/homepage%20work/annonce_model.dart';
+import 'package:projectfinal/pages/homepage%20work/details_page.dart';
 
-class FoodCategory extends StatefulWidget {
-  const FoodCategory({super.key});
+class FoodCategoryPage extends StatelessWidget {
+  final List<Announcement> foodAnnouncements;
 
-  @override
-  State<FoodCategory> createState() => _FoodCategoryState();
-}
+  const FoodCategoryPage({super.key, required this.foodAnnouncements});
 
-class _FoodCategoryState extends State<FoodCategory> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(child: Text('food announces...'))
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text(
+          'Food Category',
+          textAlign: TextAlign.left,
+          style: TextStyle(
+              fontSize: 24,
+              color: AppColors.highicons,
+              fontWeight: FontWeight.bold),
+        ),
+        leading: const BackButton(
+          color: AppColors.highicons,
+        ),
+      ),
+      body: ListView.builder(
+        itemCount: foodAnnouncements.length,
+        itemBuilder: (context, index) {
+          return AnnonceCard(
+            announcement: foodAnnouncements[index],
+            onDetailsPressed: () {
+              // Handle details button press
+              Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => const DetailsPage()),
+              );
+            },
+          );
+        },
+      ),
     );
   }
 }

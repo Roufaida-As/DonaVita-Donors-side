@@ -34,6 +34,7 @@ class AnnouncementService {
           quantityNeeded: annDoc['quantityNeeded'],
           endDate: annDoc['endDate'],
           imageUrl: annDoc['imageUrl'],
+          quantityDonated: annDoc['quantityDonated'],
         ));
       }
     }
