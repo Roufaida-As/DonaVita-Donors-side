@@ -1,7 +1,10 @@
+
+
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:projectfinal/Theme/Colors.dart';
 import 'package:projectfinal/pages/homepage%20work/annonce_model.dart';
+import 'package:projectfinal/pages/homepage%20work/details_page.dart';
 
 class AnnonceCard extends StatelessWidget {
   final Announcement announcement;
@@ -106,4 +109,5 @@ class AnnonceCard extends StatelessWidget {
       ],
     );
   }
+  
 }

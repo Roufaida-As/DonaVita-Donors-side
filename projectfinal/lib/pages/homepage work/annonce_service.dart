@@ -24,6 +24,7 @@ class AnnouncementService {
 
 
       for (var annDoc in orgAnnouncementsSnapshot.docs) {
+         Map<String, dynamic> data = annDoc.data() as Map<String, dynamic>;
         announcements.add(
           Announcement(
           organizationName: orgName,
@@ -34,6 +35,10 @@ class AnnouncementService {
           quantityNeeded: annDoc['quantityNeeded'],
           endDate: annDoc['endDate'],
           imageUrl: annDoc['imageUrl'],
+           quantityDonated: data.containsKey('quantityDonated')
+                ? data['quantityDonated']
+                :"not found",
+         
         ));
       }
     }

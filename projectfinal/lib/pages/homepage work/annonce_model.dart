@@ -7,6 +7,7 @@ class Announcement {
   final String quantityNeeded;
   final String endDate;
   late final String imageUrl;
+  final String quantityDonated;
   //final String organizationLogoPath;
   //final String announcementImagePath;
   
@@ -21,6 +22,7 @@ class Announcement {
     required this.quantityNeeded,
     required this.endDate,
     required this.imageUrl,
+    required this.quantityDonated,
    // this.organizationLogoUrl = '', // Initialized as empty string
     //this.imageUrl = '', // Initialized as empty string
     

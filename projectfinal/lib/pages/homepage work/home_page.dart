@@ -121,7 +121,9 @@ class _HomePageState extends State<HomePage> {
                       itemBuilder: (context, index) {
                         return AnnonceCard(
                             announcement: announcements[index],
-                            onDetailsPressed: detailsMethod);
+                            onDetailsPressed: () => Navigator.of(context).pushReplacement(
+      MaterialPageRoute(builder: (BuildContext context) =>  DetailsPage(annonce:announcements[index])),
+    ));
                       },
                     );
                   }),
@@ -130,9 +132,4 @@ class _HomePageState extends State<HomePage> {
         ));
   }
 
-  void detailsMethod() {
-    Navigator.of(context).pushReplacement(
-      MaterialPageRoute(builder: (BuildContext context) => const DetailsPage()),
-    );
-  }
 }

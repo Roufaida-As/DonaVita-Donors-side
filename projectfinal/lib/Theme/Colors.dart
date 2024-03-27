@@ -7,5 +7,6 @@ static const Color font =Color(0xFF191D1A);
 static const Color smallfont =Color(0xFFD7DFE4);
 static const Color details =Color(0xFF2B4B55);
 static const Color clear =Color(0xFFB4D9D0);
+static const Color Containercolor = Color(0xFFFEFFDF);
 
 }
