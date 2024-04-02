@@ -39,6 +39,7 @@ class AnnouncementService {
                 ? data['quantityDonated']
                 :"not found",
          
+
         ));
       }
     }

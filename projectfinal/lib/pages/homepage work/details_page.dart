@@ -2,7 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:projectfinal/Theme/Colors.dart';
+import 'package:projectfinal/pages/formother.dart';
 import 'package:projectfinal/pages/homepage%20work/annonce_model.dart';
+
+import 'package:projectfinal/pages/homepage%20work/formmoney.dart';
 import 'package:projectfinal/pages/homepage%20work/home_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
@@ -33,6 +36,7 @@ class _DetailsPageState extends State<DetailsPage> {
   }
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       backgroundColor: AppColors.background,
       appBar: AppBar(
@@ -201,10 +205,13 @@ class _DetailsPageState extends State<DetailsPage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         
-                        Container(decoration: BoxDecoration(color: AppColors.icons, borderRadius: BorderRadius.circular(20)), child: const Padding(
-                          padding: EdgeInsets.only(top: 3.0, bottom: 3.0,left: 15.0, right:15.0),
-                          child: Center(child: Text("Donate",style: TextStyle(color: Colors.white,fontFamily: 'Nunito',fontSize: 15,fontWeight: FontWeight.bold),)),
-                        ),),
+                        GestureDetector(
+                          onTap: push,
+                          child: Container(decoration: BoxDecoration(color: AppColors.icons, borderRadius: BorderRadius.circular(20)) ,child: const Padding(
+                            padding: EdgeInsets.only(top: 3.0, bottom: 3.0,left: 15.0, right:15.0),
+                            child: Center(child: Text("Donate",style: TextStyle(color: Colors.white,fontFamily: 'Nunito',fontSize: 15,fontWeight: FontWeight.bold),)),
+                          ),),
+                        ),
                        LinearPercentIndicator(
               width: 158.0,
               lineHeight: 6.0,
@@ -237,5 +244,18 @@ class _DetailsPageState extends State<DetailsPage> {
         ),
       ),
     );
+
+   
+}
+void push(){
+  if(widget.annonce.category=="money"){
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(builder: (BuildContext context) =>  FormmoneyPage(annonce:widget.annonce),
+    ));
+  }else{
+     Navigator.of(context).pushReplacement(
+      MaterialPageRoute(builder: (BuildContext context) =>  FormotherPage(annonce:widget.annonce),
+    ));
   }
+}
 }
