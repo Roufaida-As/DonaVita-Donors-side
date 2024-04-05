@@ -1,8 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:projectfinal/Theme/Colors.dart';
-import 'package:projectfinal/components/bottom_nav_bar.dart';
-import 'package:projectfinal/pages/chat_page.dart';
+import 'package:projectfinal/chat_page.dart';
 import 'package:projectfinal/pages/homepage%20work/home_page.dart';
 import 'package:projectfinal/pages/notifications_page.dart';
 import 'package:projectfinal/pages/profile_page.dart';
@@ -106,7 +105,7 @@ Widget _buildPage(int index) {
       }));
     case 1:
       return CupertinoTabView(builder: ((context) {
-        return const CupertinoPageScaffold(child: ChatPage());
+        return  const CupertinoPageScaffold(child: ChatPage());
       }));
     case 2:
       return CupertinoTabView(builder: ((context) {

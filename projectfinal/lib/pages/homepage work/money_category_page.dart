@@ -18,25 +18,29 @@ class MoneyCategoryPage extends StatelessWidget {
             textAlign: TextAlign.left,
             style: TextStyle(
                 fontSize: 24,
+                fontFamily: 'Nunito',
                 color: AppColors.highicons,
                 fontWeight: FontWeight.bold),
           ),
           leading: const BackButton(
             color: AppColors.highicons,
           )),
-      body: ListView.builder(
-        itemCount: moneyAnnouncements.length,
-        itemBuilder: (context, index) {
-          return AnnonceCard(
-            announcement: moneyAnnouncements[index],
-            onDetailsPressed: () {
-              // Handle details button press
-              Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => const DetailsPage()),
-              );
-            },
-          );
-        },
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: ListView.builder(
+          itemCount: moneyAnnouncements.length,
+          itemBuilder: (context, index) {
+            return AnnonceCard(
+              announcement: moneyAnnouncements[index],
+              onDetailsPressed: () {
+                // Handle details button press
+                Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => const DetailsPage()),
+                );
+              },
+            );
+          },
+        ),
       ),
     );
   }

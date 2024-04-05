@@ -52,6 +52,7 @@ class _HomePageState extends State<HomePage> {
             textAlign: TextAlign.left,
             style: TextStyle(
                 fontSize: 24,
+                fontFamily: 'Nunito',
                 color: AppColors.highicons,
                 fontWeight: FontWeight.bold),
           ),
@@ -68,8 +69,7 @@ class _HomePageState extends State<HomePage> {
                     //food category
                     ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: AppColors
-                              .highicons,
+                          backgroundColor: AppColors.highicons,
                         ),
                         onPressed: () => {
                               Navigator.of(context).push(
@@ -83,6 +83,7 @@ class _HomePageState extends State<HomePage> {
                         child: const Text(
                           "FOOD",
                           style: TextStyle(
+                              fontFamily: 'Nunito',
                               color: AppColors.background,
                               fontWeight: FontWeight.bold),
                         )),
@@ -104,6 +105,7 @@ class _HomePageState extends State<HomePage> {
                         child: const Text(
                           "CLOTHES",
                           style: TextStyle(
+                              fontFamily: 'Nunito',
                               color: AppColors.background,
                               fontWeight: FontWeight.bold),
                         )),
@@ -126,6 +128,7 @@ class _HomePageState extends State<HomePage> {
                         child: const Text(
                           "MONEY",
                           style: TextStyle(
+                              fontFamily: 'Nunito',
                               color: AppColors.icons,
                               fontWeight: FontWeight.bold),
                         ))
@@ -138,9 +141,11 @@ class _HomePageState extends State<HomePage> {
                     return ListView.builder(
                       itemCount: announcements.length,
                       itemBuilder: (context, index) {
-                        return AnnonceCard(
-                            announcement: announcements[index],
-                            onDetailsPressed: detailsMethod);
+                        return SafeArea(
+                          child: AnnonceCard(
+                              announcement: announcements[index],
+                              onDetailsPressed: detailsMethod),
+                        );
                       },
                     );
                   }),
