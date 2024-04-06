@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
-import 'package:projectfinal/Theme/Colors.dart';
+import 'package:projectfinal/Theme/colors.dart';
 import 'package:projectfinal/pages/homepage%20work/annonce_model.dart';
 
-class AnnonceCard extends StatelessWidget {
+class AnnonceCard extends StatefulWidget {
   final Announcement announcement;
   final VoidCallback? onDetailsPressed;
   const AnnonceCard({
@@ -11,6 +11,26 @@ class AnnonceCard extends StatelessWidget {
     required this.announcement,
     required this.onDetailsPressed,
   });
+
+  @override
+  State<AnnonceCard> createState() => _AnnonceCardState();
+}
+
+class _AnnonceCardState extends State<AnnonceCard> {
+  double donationProgress = 0.0;
+
+  @override
+  void initState() {
+    super.initState();
+    updateDonationProgress();
+  }
+
+  void updateDonationProgress() {
+    setState(() {
+      donationProgress = double.parse(widget.announcement.quantityDonated) /
+          double.parse(widget.announcement.quantityNeeded);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +55,7 @@ class AnnonceCard extends StatelessWidget {
                 left: 9,
                 //organisation name
                 child: Text(
-                  announcement.organizationName,
+                  widget.announcement.organizationName,
                   style: const TextStyle(
                       fontSize: 16,
                       color: AppColors.icons,
@@ -65,7 +85,7 @@ class AnnonceCard extends StatelessWidget {
                       style: ElevatedButton.styleFrom(
                         backgroundColor: AppColors.icons,
                       ),
-                      onPressed: onDetailsPressed,
+                      onPressed: widget.onDetailsPressed,
                       child: const Text(
                         "Details",
                         style: TextStyle(
@@ -89,7 +109,7 @@ class AnnonceCard extends StatelessWidget {
 
                       Expanded(
                         child: Text(
-                          "${announcement.annonceTitle} : ${announcement.description.length <= 30 ? announcement.description : '${announcement.description.substring(0, 25)}...'}",
+                          "${widget.announcement.annonceTitle} : ${widget.announcement.description.length <= 30 ? widget.announcement.description : '${widget.announcement.description.substring(0, 25)}...'}",
                           style: const TextStyle(
                               fontSize: 12,
                               fontFamily: 'Roboto',
@@ -100,13 +120,13 @@ class AnnonceCard extends StatelessWidget {
 
                       LinearPercentIndicator(
                         width: 100,
-                        lineHeight: 10.0,
-                        percent: 0.5,
-                        barRadius: const Radius.circular(8),
-                        center: const Text(
-                          '50%',
+                        lineHeight: 11.0,
+                        percent: donationProgress,
+                        barRadius: const Radius.circular(7),
+                        center: Text(
+                          '${((double.parse(widget.announcement.quantityDonated) / double.parse(widget.announcement.quantityNeeded)) * 100).toStringAsFixed(0)}%',
                           textAlign: TextAlign.center,
-                          style: TextStyle(fontSize: 10.0),
+                          style: const TextStyle(fontSize: 10.0),
                         ),
                         backgroundColor: AppColors.background,
                         progressColor: AppColors.highicons,

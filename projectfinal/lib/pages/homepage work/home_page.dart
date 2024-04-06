@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:projectfinal/Theme/Colors.dart';
+import 'package:projectfinal/Theme/colors.dart';
 import 'package:projectfinal/pages/homepage%20work/annonce_card.dart';
 import 'package:projectfinal/pages/homepage%20work/annonce_model.dart';
 import 'package:projectfinal/pages/homepage%20work/annonce_service.dart';
@@ -51,7 +51,7 @@ class _HomePageState extends State<HomePage> {
             "Donations",
             textAlign: TextAlign.left,
             style: TextStyle(
-                fontSize: 24,
+                fontSize: 30,
                 fontFamily: 'Nunito',
                 color: AppColors.highicons,
                 fontWeight: FontWeight.bold),
@@ -144,7 +144,13 @@ class _HomePageState extends State<HomePage> {
                         return SafeArea(
                           child: AnnonceCard(
                               announcement: announcements[index],
-                              onDetailsPressed: detailsMethod),
+                              onDetailsPressed: () =>
+                                  Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                        builder: (BuildContext context) =>
+                                            DetailsPage(
+                                                annonce: announcements[index])),
+                                  )),
                         );
                       },
                     );
@@ -152,11 +158,5 @@ class _HomePageState extends State<HomePage> {
                 ))
               ])),
         ));
-  }
-
-  void detailsMethod() {
-    Navigator.of(context).push(
-      MaterialPageRoute(builder: (BuildContext context) => const DetailsPage()),
-    );
   }
 }

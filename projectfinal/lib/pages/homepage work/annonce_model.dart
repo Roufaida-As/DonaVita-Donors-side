@@ -9,6 +9,11 @@ class Announcement {
   final String endDate;
   late final String imageUrl;
 
+
+  //final String organizationLogoPath;
+  //final String announcementImagePath;
+  
+
   Announcement({
     required this.organizationName,
     required this.organizationLogoUrl,
@@ -19,6 +24,11 @@ class Announcement {
     required this.quantityDonated,
     required this.endDate,
     required this.imageUrl,
+
+   // this.organizationLogoUrl = '', // Initialized as empty string
+    //this.imageUrl = '', // Initialized as empty string
+    
+
   });
 
   // Add any additional methods if needed

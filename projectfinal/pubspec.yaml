@@ -72,6 +72,9 @@ flutter:
     - assets/Icons/Rectangle 7.png
     - assets/Icons/Name.png
     - assets/Icons/Slogan.png
+    - assets/Icons/Ellipse 3.png
+    - assets/Icons/eva_arrow-back-outline.png
+    - assets/Icons/Rectangle2.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 

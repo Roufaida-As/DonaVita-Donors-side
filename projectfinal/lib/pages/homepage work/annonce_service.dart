@@ -3,14 +3,11 @@ import 'package:projectfinal/pages/homepage%20work/annonce_model.dart';
 //import 'package:firebase_storage/firebase_storage.dart';
 //import 'package:projectfinal/pages/homepage%20work/storage_service.dart';
 
-
 class AnnouncementService {
   final CollectionReference announcementsCollection =
       FirebaseFirestore.instance.collection('Organisations');
 
   Future<List<Announcement>> getAnnouncements() async {
-
-
     QuerySnapshot querySnapshot = await announcementsCollection.get();
 
     List<Announcement> announcements = [];
@@ -22,10 +19,9 @@ class AnnouncementService {
       QuerySnapshot orgAnnouncementsSnapshot =
           await doc.reference.collection('annonces').get();
 
-
       for (var annDoc in orgAnnouncementsSnapshot.docs) {
-        announcements.add(
-          Announcement(
+        Map<String, dynamic> data = annDoc.data() as Map<String, dynamic>;
+        announcements.add(Announcement(
           organizationName: orgName,
           organizationLogoUrl: orgLogoUrl,
           category: annDoc['category'],
@@ -34,11 +30,13 @@ class AnnouncementService {
           quantityNeeded: annDoc['quantityNeeded'],
           endDate: annDoc['endDate'],
           imageUrl: annDoc['imageUrl'],
-          quantityDonated: annDoc['quantityDonated'],
+          quantityDonated: data.containsKey('quantityDonated')
+              ? data['quantityDonated']
+              : "not found",
         ));
       }
     }
-    
+
     return announcements;
   }
 }
