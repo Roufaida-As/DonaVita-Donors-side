@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:projectfinal/Theme/Colors.dart';
+import 'package:projectfinal/Theme/colors.dart';
 import 'package:projectfinal/pages/homepage%20work/annonce_card.dart';
 import 'package:projectfinal/pages/homepage%20work/annonce_model.dart';
 import 'package:projectfinal/pages/homepage%20work/annonce_service.dart';
@@ -51,7 +51,8 @@ class _HomePageState extends State<HomePage> {
             "Donations",
             textAlign: TextAlign.left,
             style: TextStyle(
-                fontSize: 24,
+                fontSize: 30,
+                fontFamily: 'Nunito',
                 color: AppColors.highicons,
                 fontWeight: FontWeight.bold),
           ),
@@ -68,8 +69,7 @@ class _HomePageState extends State<HomePage> {
                     //food category
                     ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: AppColors
-                              .highicons,
+                          backgroundColor: AppColors.highicons,
                         ),
                         onPressed: () => {
                               Navigator.of(context).push(
@@ -83,6 +83,7 @@ class _HomePageState extends State<HomePage> {
                         child: const Text(
                           "FOOD",
                           style: TextStyle(
+                              fontFamily: 'Nunito',
                               color: AppColors.background,
                               fontWeight: FontWeight.bold),
                         )),
@@ -104,6 +105,7 @@ class _HomePageState extends State<HomePage> {
                         child: const Text(
                           "CLOTHES",
                           style: TextStyle(
+                              fontFamily: 'Nunito',
                               color: AppColors.background,
                               fontWeight: FontWeight.bold),
                         )),
@@ -126,6 +128,7 @@ class _HomePageState extends State<HomePage> {
                         child: const Text(
                           "MONEY",
                           style: TextStyle(
+                              fontFamily: 'Nunito',
                               color: AppColors.icons,
                               fontWeight: FontWeight.bold),
                         ))
@@ -138,11 +141,17 @@ class _HomePageState extends State<HomePage> {
                     return ListView.builder(
                       itemCount: announcements.length,
                       itemBuilder: (context, index) {
-                        return AnnonceCard(
-                            announcement: announcements[index],
-                            onDetailsPressed: () => Navigator.of(context).pushReplacement(
-      MaterialPageRoute(builder: (BuildContext context) =>  DetailsPage(annonce:announcements[index])),
-    ));
+                        return SafeArea(
+                          child: AnnonceCard(
+                              announcement: announcements[index],
+                              onDetailsPressed: () =>
+                                  Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                        builder: (BuildContext context) =>
+                                            DetailsPage(
+                                                annonce: announcements[index])),
+                                  )),
+                        );
                       },
                     );
                   }),
@@ -150,7 +159,4 @@ class _HomePageState extends State<HomePage> {
               ])),
         ));
   }
-
-
-
 }

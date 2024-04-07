@@ -1,23 +1,18 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:projectfinal/Theme/Colors.dart';
+import 'package:projectfinal/Theme/colors.dart';
 import 'package:projectfinal/pages/formother.dart';
 import 'package:projectfinal/pages/homepage%20work/annonce_model.dart';
 
 import 'package:projectfinal/pages/homepage%20work/formmoney.dart';
 import 'package:projectfinal/pages/homepage%20work/home_page.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
-
 
 class DetailsPage extends StatefulWidget {
   final Announcement annonce;
-  const DetailsPage({Key? key, required this.annonce}) : super(key: key);
+  const DetailsPage({super.key, required this.annonce});
 
   @override
   State<DetailsPage> createState() => _DetailsPageState();
-
 }
 
 class _DetailsPageState extends State<DetailsPage> {
@@ -30,13 +25,16 @@ class _DetailsPageState extends State<DetailsPage> {
   }
 
   void updateDonationProgress() {
+
   setState(() {
     donationProgress = double.parse(widget.annonce.quantityDonated) / double.parse(widget.annonce.quantityNeeded);
   });
 }
+
+   
+
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       backgroundColor: AppColors.background,
       appBar: AppBar(
@@ -54,7 +52,8 @@ class _DetailsPageState extends State<DetailsPage> {
         leading: GestureDetector(
           onTap: () {
             Navigator.of(context).push(
-              MaterialPageRoute(builder: (BuildContext context) => const HomePage()),
+              MaterialPageRoute(
+                  builder: (BuildContext context) => const HomePage()),
             );
           },
           child: Padding(
@@ -68,10 +67,12 @@ class _DetailsPageState extends State<DetailsPage> {
         ),
       ),
       body: Padding(
-        padding: EdgeInsets.all(25),
+        padding: const EdgeInsets.all(25),
         child: Container(
           height: double.infinity,
-          decoration: BoxDecoration(color: AppColors.Containercolor, borderRadius: BorderRadius.circular(10)),
+          decoration: BoxDecoration(
+              color: AppColors.Containercolor,
+              borderRadius: BorderRadius.circular(10)),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
@@ -80,19 +81,20 @@ class _DetailsPageState extends State<DetailsPage> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Container(
+                      SizedBox(
                         height: 196,
-                        
                         child: Stack(
                           alignment: Alignment.center,
                           children: [
                             Container(
-                              width: 378, // Adjust width to match the image width
+                              width:
+                                  378, // Adjust width to match the image width
                               height: 196,
                               decoration: BoxDecoration(
                                 boxShadow: [
                                   BoxShadow(
-                                    color: Color(0xFFA1A1A1).withOpacity(0.2),
+                                    color: const Color(0xFFA1A1A1)
+                                        .withOpacity(0.2),
                                     spreadRadius: 0, // spread radius
                                     blurRadius: 12,
                                   )
@@ -112,7 +114,10 @@ class _DetailsPageState extends State<DetailsPage> {
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Image.network(widget.annonce.organizationLogoUrl, height: 70, width: 70),
+                                Image.network(
+                                    widget.annonce.organizationLogoUrl,
+                                    height: 70,
+                                    width: 70),
                                 Text(widget.annonce.organizationName,
                                     style: const TextStyle(
                                       fontFamily: 'Roboto',
@@ -130,7 +135,7 @@ class _DetailsPageState extends State<DetailsPage> {
                         padding: const EdgeInsets.only(left: 32, right: 10),
                         child: Column(
                           children: [
-                            Container(
+                            SizedBox(
                               width: double.infinity,
                               child: Text(
                                 widget.annonce.annonceTitle,
@@ -143,7 +148,7 @@ class _DetailsPageState extends State<DetailsPage> {
                                 ),
                               ),
                             ),
-                            Container(
+                            SizedBox(
                               width: double.infinity,
                               child: Text(
                                 widget.annonce.description,
@@ -164,98 +169,175 @@ class _DetailsPageState extends State<DetailsPage> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 32,right: 32),
+                padding: const EdgeInsets.only(left: 32, right: 32),
                 child: Container(
-                 
-                  child: Column(children: [
+                    child: Column(
+                  children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Column(
                           children: [
-                            Text("Quantity needed", style: TextStyle(color: AppColors.icons, fontFamily: 'Roboto', fontSize: 15),),
-                            SizedBox(height: 10,),
+                            const Text(
+                              "Quantity needed",
+                              style: TextStyle(
+                                  color: AppColors.icons,
+                                  fontFamily: 'Roboto',
+                                  fontSize: 15),
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
                             Row(
                               children: [
-                                Text(widget.annonce.quantityNeeded,textAlign: TextAlign.left,style: TextStyle(fontFamily: 'Roboto',fontSize: 15,color:AppColors.details ),
+                                Text(
+                                  widget.annonce.quantityNeeded,
+                                  textAlign: TextAlign.left,
+                                  style: const TextStyle(
+                                      fontFamily: 'Roboto',
+                                      fontSize: 15,
+                                      color: AppColors.details),
                                 ),
-                                SizedBox(width: 2,),
-                                Text(widget.annonce.category == 'money' ? 'DA' : 'Persons',textAlign: TextAlign.left,style: TextStyle(fontFamily: 'Roboto',fontSize: 15,color:AppColors.details ),
+                                const SizedBox(
+                                  width: 2,
+                                ),
+                                Text(
+                                  widget.annonce.category == 'money'
+                                      ? 'DA'
+                                      : 'Persons',
+                                  textAlign: TextAlign.left,
+                                  style: const TextStyle(
+                                      fontFamily: 'Roboto',
+                                      fontSize: 15,
+                                      color: AppColors.details),
                                 ),
                               ],
                             )
                           ],
                         ),
-                        
                         Column(
                           children: [
-                            Text("Deadline", style: TextStyle(color: AppColors.icons, fontFamily: 'Roboto', fontSize: 15),),
-                             SizedBox(height: 10,),
-                              
-                                    Text(widget.annonce.endDate,textAlign: TextAlign.left,style: TextStyle(fontFamily: 'Roboto',fontSize: 15,color:AppColors.details ),
-                                    ),
-                                 
+                            const Text(
+                              "Deadline",
+                              style: TextStyle(
+                                  color: AppColors.icons,
+                                  fontFamily: 'Roboto',
+                                  fontSize: 15),
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                              widget.annonce.endDate,
+                              textAlign: TextAlign.left,
+                              style: const TextStyle(
+                                  fontFamily: 'Roboto',
+                                  fontSize: 15,
+                                  color: AppColors.details),
+                            ),
                           ],
                         )
                       ],
                     ),
-                    
-                    const SizedBox(height: 40,),
+                    const SizedBox(
+                      height: 40,
+                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        
                         GestureDetector(
                           onTap: push,
-                          child: Container(decoration: BoxDecoration(color: AppColors.icons, borderRadius: BorderRadius.circular(20)) ,child: const Padding(
-                            padding: EdgeInsets.only(top: 3.0, bottom: 3.0,left: 15.0, right:15.0),
-                            child: Center(child: Text("Donate",style: TextStyle(color: Colors.white,fontFamily: 'Nunito',fontSize: 15,fontWeight: FontWeight.bold),)),
-                          ),),
+                          child: Container(
+                            decoration: BoxDecoration(
+                                color: AppColors.icons,
+                                borderRadius: BorderRadius.circular(20)),
+                            child: const Padding(
+                              padding: EdgeInsets.only(
+                                  top: 3.0,
+                                  bottom: 3.0,
+                                  left: 15.0,
+                                  right: 15.0),
+                              child: Center(
+                                  child: Text(
+                                "Donate",
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontFamily: 'Nunito',
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.bold),
+                              )),
+                            ),
+                          ),
                         ),
-                       LinearPercentIndicator(
-              width: 158.0,
-              lineHeight: 6.0,
-              percent: donationProgress,
-              barRadius: const Radius.circular(10),
-              
-              backgroundColor: AppColors.background,
-              progressColor: AppColors.highicons,
-            ),
+                        LinearPercentIndicator(
+                          width: 140.0,
+                          lineHeight: 11.0,
+                          percent: donationProgress,
+                          center: Text(
+                            '${((double.parse(widget.annonce.quantityDonated) / double.parse(widget.annonce.quantityNeeded)) * 100).toStringAsFixed(0)}%',
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(fontSize: 10.0),
+                          ),
+                          barRadius: const Radius.circular(10),
+                          backgroundColor: AppColors.background,
+                          progressColor: AppColors.highicons,
+                        ),
                       ],
                     ),
-                    SizedBox(height: 13,),
-                    
-                       Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children:[Text("For more information",style: TextStyle(color: AppColors.icons,fontFamily: 'nunito',fontSize: 12)),
-                        SizedBox(width: 4,),
-                         Container(decoration: BoxDecoration(color: AppColors.highicons, borderRadius: BorderRadius.circular(20)), child: Padding(
-                           padding: const EdgeInsets.only(top: 3.0, bottom: 3.0,left: 15.0, right:15.0),
-                           child: Center(child: Text("Contact us",style: TextStyle(color: Colors.white,fontFamily: 'Nunito',fontSize: 12,fontWeight: FontWeight.bold),)),
-                         ))
-                        ]
+                    const SizedBox(
+                      height: 13,
+                    ),
+                    Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                      const Text("For more information",
+                          style: TextStyle(
+                              color: AppColors.icons,
+                              fontFamily: 'nunito',
+                              fontSize: 12)),
+                      const SizedBox(
+                        width: 4,
                       ),
-                     SizedBox(height: 40,),
-                  ],)
-                ),
+                      Container(
+                          decoration: BoxDecoration(
+                              color: AppColors.highicons,
+                              borderRadius: BorderRadius.circular(20)),
+                          child: const Padding(
+                            padding: EdgeInsets.only(
+                                top: 3.0, bottom: 3.0, left: 15.0, right: 15.0),
+                            child: Center(
+                                child: Text(
+                              "Contact us",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontFamily: 'Nunito',
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.bold),
+                            )),
+                          ))
+                    ]),
+                    const SizedBox(
+                      height: 40,
+                    ),
+                  ],
+                )),
               ),
             ],
           ),
         ),
       ),
     );
-
-   
-}
-void push(){
-  if(widget.annonce.category=="money"){
-    Navigator.of(context).pushReplacement(
-      MaterialPageRoute(builder: (BuildContext context) =>  FormmoneyPage(annonce:widget.annonce),
-    ));
-  }else{
-     Navigator.of(context).pushReplacement(
-      MaterialPageRoute(builder: (BuildContext context) =>  FormotherPage(annonce:widget.annonce),
-    ));
   }
-}
+
+  void push() {
+    if (widget.annonce.category == "money") {
+      Navigator.of(context).pushReplacement(MaterialPageRoute(
+        builder: (BuildContext context) =>
+            FormmoneyPage(annonce: widget.annonce),
+      ));
+    } else {
+      Navigator.of(context).pushReplacement(MaterialPageRoute(
+        builder: (BuildContext context) =>
+            FormotherPage(annonce: widget.annonce),
+      ));
+    }
+  }
 }

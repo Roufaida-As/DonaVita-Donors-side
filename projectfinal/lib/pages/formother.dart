@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter/widgets.dart';
 import 'package:projectfinal/Theme/Colors.dart';
 import 'package:projectfinal/pages/homepage%20work/Fomulaire_service.dart';
 import 'package:projectfinal/pages/homepage%20work/Mytextfield.dart';
 import 'package:projectfinal/pages/homepage%20work/annonce_model.dart';
 import 'package:projectfinal/pages/homepage%20work/details_page.dart';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+
+
+
+
+
 
 class FormotherPage extends StatefulWidget {
   final Announcement annonce;
@@ -46,36 +53,39 @@ class _FormotherPageState extends State<FormotherPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.clear,
-     appBar: AppBar(
-      
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        title: const Text(
-          "Donation form",
-          textAlign: TextAlign.left,
-          style: TextStyle(
-            fontSize: 32,
-            color: AppColors.highicons,
-            fontWeight: FontWeight.bold,
+        backgroundColor: AppColors.clear,
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          title: const Text(
+            "Donation form",
+            textAlign: TextAlign.left,
+            style: TextStyle(
+              fontSize: 32,
+              color: AppColors.highicons,
+              fontWeight: FontWeight.bold,
+            ),
           ),
-        ),
-        leading: GestureDetector(
-          onTap: () {
-            Navigator.of(context).push(
-              MaterialPageRoute(builder: (BuildContext context) =>  DetailsPage(annonce: widget.annonce)),
-            );
-          },
-          child: Padding(
-            padding: const EdgeInsets.only(left: 10.0),
-            child: Image.asset(
-              'assets/Icons/eva_arrow-back-outline.png',
-              width: 32,
-              height: 32,
+          leading: GestureDetector(
+            onTap: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                    builder: (BuildContext context) =>
+                        DetailsPage(annonce: widget.annonce)),
+              );
+            },
+            child: Padding(
+              padding: const EdgeInsets.only(left: 10.0),
+              child: Image.asset(
+                'assets/Icons/eva_arrow-back-outline.png',
+                width: 32,
+                height: 32,
+              ),
             ),
           ),
         ),
-      ),
+
+      
       body: Padding(padding: EdgeInsets.only(top: 40,),
       child:Container(
         height:double.infinity,
@@ -194,7 +204,10 @@ setState(() {
     
       ),
      
-    )
-    );
+    ),
+    
+
+     );
+
   }
 }

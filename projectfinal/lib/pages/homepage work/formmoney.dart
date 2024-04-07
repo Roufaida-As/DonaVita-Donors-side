@@ -11,7 +11,7 @@ class FormmoneyPage extends StatefulWidget {
 class _FormmoneyPageState extends State<FormmoneyPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
           body:Text("money"),
     );
   }
