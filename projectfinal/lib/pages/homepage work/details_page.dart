@@ -30,10 +30,10 @@ class _DetailsPageState extends State<DetailsPage> {
   }
 
   void updateDonationProgress() {
-    setState(() {
-      donationProgress = double.parse(widget.annonce.quantityDonated) / double.parse(widget.annonce.quantityNeeded);
-    });
-  }
+  setState(() {
+    donationProgress = double.parse(widget.annonce.quantityDonated) / double.parse(widget.annonce.quantityNeeded);
+  });
+}
   @override
   Widget build(BuildContext context) {
 

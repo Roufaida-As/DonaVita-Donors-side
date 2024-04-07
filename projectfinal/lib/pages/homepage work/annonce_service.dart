@@ -18,6 +18,8 @@ class AnnouncementService {
     for (QueryDocumentSnapshot doc in querySnapshot.docs) {
       String orgName = doc['name'];
       String orgLogoUrl = doc['logoURL'];
+      String OrganisationId=doc.id;
+      
 
       QuerySnapshot orgAnnouncementsSnapshot =
           await doc.reference.collection('annonces').get();
@@ -29,6 +31,8 @@ class AnnouncementService {
           Announcement(
           organizationName: orgName,
           organizationLogoUrl: orgLogoUrl,
+          orgId: OrganisationId,
+annonceId: annDoc.id,
           category: annDoc['category'],
           annonceTitle: annDoc['annonceTitle'],
           description: annDoc['description'],

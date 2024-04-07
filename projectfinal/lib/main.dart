@@ -8,6 +8,7 @@ import 'package:projectfinal/pages/homepage%20work/home_page.dart';
 
 import 'package:projectfinal/pages/splash_screen.dart';
 
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized(); // Initialize Flutter framework
   await Firebase.initializeApp(

@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:projectfinal/Theme/Colors.dart';
 class Mytextfield extends StatelessWidget {
   final String abovestring;
-  const Mytextfield({super.key,required this.abovestring});
+  final TextEditingController controller;
+  const Mytextfield({super.key,required this.abovestring, required this.controller});
 
   @override
   Widget build(BuildContext context) {
     return 
-     TextField(
+     TextField
+     (controller: controller,
             decoration: new InputDecoration(
                 
                 enabledBorder: new UnderlineInputBorder(

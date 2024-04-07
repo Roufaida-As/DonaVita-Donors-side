@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:projectfinal/Theme/Colors.dart';
+import 'package:projectfinal/pages/homepage%20work/Fomulaire_service.dart';
 import 'package:projectfinal/pages/homepage%20work/Mytextfield.dart';
 import 'package:projectfinal/pages/homepage%20work/annonce_model.dart';
 import 'package:projectfinal/pages/homepage%20work/details_page.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class FormotherPage extends StatefulWidget {
   final Announcement annonce;
   const FormotherPage({super.key, required this.annonce});
@@ -12,6 +16,33 @@ class FormotherPage extends StatefulWidget {
 }
 
 class _FormotherPageState extends State<FormotherPage> {
+  late Formulaireservice formulaireservice;
+   FirebaseFirestore db = FirebaseFirestore.instance;
+
+  @override
+  void initState() {
+    super.initState();
+    formulaireservice = Formulaireservice(widget.annonce.orgId, widget.annonce.annonceId);
+  }
+
+  TextEditingController namecontroller = TextEditingController();
+  TextEditingController phonenumbercontroller = TextEditingController();
+  TextEditingController adresscontroller = TextEditingController();
+  int _counter = 0;
+ 
+  @override
+
+  void _incrementCounter() {
+    setState(() {
+      _counter++;
+    });
+  }
+
+  void _decrementCounter() {
+    setState(() {
+      _counter--;
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -86,14 +117,15 @@ child: SingleChildScrollView(
        padding: const EdgeInsets.only(right: 30),
         child: Column(
           children: [ 
-             Mytextfield(abovestring: 'Full name'),
+             Mytextfield(abovestring: 'Full name',controller: namecontroller,),
               SizedBox(height: 20,),
-              Mytextfield(abovestring: 'Phone number'),
+              Mytextfield(abovestring: 'Phone number',controller: phonenumbercontroller,),
                   SizedBox(height: 20,),
-              Mytextfield(abovestring: 'Adress'),
+              Mytextfield(abovestring: 'Adress',controller: adresscontroller,),
               SizedBox(height: 20,),
               Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
                children: [
                 Text('Quantity',style: TextStyle(fontFamily: 'Roboto',fontSize: 14,color: AppColors.icons),),
                 SizedBox(width: 10,),
@@ -101,12 +133,57 @@ child: SingleChildScrollView(
                 height: 25,
                 width: 25,
                 decoration: BoxDecoration(borderRadius: BorderRadius.circular(8),color: AppColors.clear,),
-                child: Center(child: IconButton(onPressed: () {}, 
+                child: Center(child: IconButton(onPressed: _counter > 0 ? _decrementCounter : null, 
                 icon: Icon(Icons.remove,color: AppColors.icons,size: 15,),padding: EdgeInsets.zero,),),),
-                 Text('Persons',style: TextStyle(fontFamily: 'Roboto',fontSize: 14,color: AppColors.icons),),
+                 
+                 SizedBox(width: 8,),
+                 Text(   '$_counter',
+          style: TextStyle(fontSize: 14.0,color: AppColors.details),),
+                   SizedBox(width: 8,),
+                 
+                    Container(
+                                   height: 25,
+                                   width: 25,
+                                   decoration: BoxDecoration(borderRadius: BorderRadius.circular(8),color: AppColors.clear,),
+                                   child: Center(child: IconButton(onPressed: _incrementCounter, 
+                                   icon: Icon(Icons.add,color: AppColors.icons,size: 15,),padding: EdgeInsets.zero,),),),
+               
+                 
+                  SizedBox(width: 10,),
+Text('Persons',style: TextStyle(fontFamily: 'Roboto',fontSize: 14,color: AppColors.icons),),
                ],
-              )
-            
+              ),
+            SizedBox(height: 45,),
+            GestureDetector(
+              onTap: () {
+                formulaireservice.addFormulaire(namecontroller.text, phonenumbercontroller.text, adresscontroller.text, _counter.toString());
+                phonenumbercontroller.clear();
+                adresscontroller.clear();
+                namecontroller.clear();
+                int newquantity = int.parse(widget.annonce.quantityDonated) + _counter;
+setState(() {
+  db.collection('Organisations')
+      .doc(widget.annonce.orgId)
+      .collection('annonces')
+      .doc(widget.annonce.annonceId)
+      .update({"quantityDonated": newquantity.toString()});
+});
+   
+                setState(() {
+      _counter = 0;
+    });
+    
+
+                
+              },
+                child: Container(
+                  width: 140,
+                  decoration: BoxDecoration(color: AppColors.icons,borderRadius: BorderRadius.circular(40)),
+                  child: Padding(padding: EdgeInsets.only(left: 10,right: 10,top: 3,bottom: 3),
+                  child: Center(child: Text('Submit',style: TextStyle(color: Colors.white,fontFamily: 'Roboto',fontSize: 18,fontWeight: FontWeight.w400),)),),
+                             ),
+              ),
+             
           ],
         ),
       )
