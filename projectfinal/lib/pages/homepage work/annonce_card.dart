@@ -34,6 +34,9 @@ class _AnnonceCardState extends State<AnnonceCard> {
 
   @override
   Widget build(BuildContext context) {
+    final bool isCompleted =
+        double.parse(widget.announcement.quantityDonated) >=
+            double.parse(widget.announcement.quantityNeeded);
     return Column(
       children: [
         Container(
@@ -79,22 +82,41 @@ class _AnnonceCardState extends State<AnnonceCard> {
                 top: 115,
                 right: 8,
                 child: SizedBox(
-                    height: 20,
-                    width: 90,
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: AppColors.icons,
-                      ),
-                      onPressed: widget.onDetailsPressed,
-                      child: const Text(
-                        "Details",
-                        style: TextStyle(
-                          fontSize: 12,
-                          fontFamily: 'Nunito',
-                          color: AppColors.background,
+                  height: 20,
+                  width: 90,
+                  child: isCompleted
+                      ? Container(
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                            color: AppColors.icons,
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          child: const Text(
+                            "Completed",
+                            style: TextStyle(
+                              fontSize: 12,
+                              fontFamily: 'Nunito',
+                              fontWeight: FontWeight.bold,
+                              color: AppColors.background,
+                            ),
+                          ),
+                        )
+                      : ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: AppColors.icons,
+                          ),
+                          onPressed: widget.onDetailsPressed,
+                          child: const Text(
+                            "Details",
+                            style: TextStyle(
+                              fontSize: 12,
+                              fontFamily: 'Nunito',
+                              fontWeight: FontWeight.bold,
+                              color: AppColors.background,
+                            ),
+                          ),
                         ),
-                      ),
-                    )),
+                ),
               ),
               Positioned(
                 top: 142,

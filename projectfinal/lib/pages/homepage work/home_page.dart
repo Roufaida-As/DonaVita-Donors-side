@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:projectfinal/Theme/colors.dart';
 import 'package:projectfinal/pages/homepage%20work/annonce_card.dart';
@@ -28,7 +29,9 @@ class _HomePageState extends State<HomePage> {
         });
       }
     } catch (e) {
-      print('Error fetching announcements: $e');
+      if (kDebugMode) {
+        print('debug: $Error fetching announcements');
+      }
     }
   }
 

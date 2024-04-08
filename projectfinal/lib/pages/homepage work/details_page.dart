@@ -4,7 +4,6 @@ import 'package:projectfinal/pages/formother.dart';
 import 'package:projectfinal/pages/homepage%20work/annonce_model.dart';
 
 import 'package:projectfinal/pages/homepage%20work/formmoney.dart';
-import 'package:projectfinal/pages/homepage%20work/home_page.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
 class DetailsPage extends StatefulWidget {
@@ -25,13 +24,11 @@ class _DetailsPageState extends State<DetailsPage> {
   }
 
   void updateDonationProgress() {
-
-  setState(() {
-    donationProgress = double.parse(widget.annonce.quantityDonated) / double.parse(widget.annonce.quantityNeeded);
-  });
-}
-
-   
+    setState(() {
+      donationProgress = double.parse(widget.annonce.quantityDonated) /
+          double.parse(widget.annonce.quantityNeeded);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,20 +46,10 @@ class _DetailsPageState extends State<DetailsPage> {
             fontWeight: FontWeight.bold,
           ),
         ),
-        leading: GestureDetector(
-          onTap: () {
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                  builder: (BuildContext context) => const HomePage()),
-            );
-          },
-          child: Padding(
-            padding: const EdgeInsets.only(left: 10.0),
-            child: Image.asset(
-              'assets/Icons/eva_arrow-back-outline.png',
-              width: 32,
-              height: 32,
-            ),
+        leading: const Padding(
+          padding: EdgeInsets.only(left: 10.0),
+          child: BackButton(
+            color: AppColors.highicons,
           ),
         ),
       ),
@@ -203,8 +190,8 @@ class _DetailsPageState extends State<DetailsPage> {
                                 ),
                                 Text(
                                   widget.annonce.category == 'money'
-                                      ? 'DA'
-                                      : 'Persons',
+                                      ? ' DA'
+                                      : ' persons',
                                   textAlign: TextAlign.left,
                                   style: const TextStyle(
                                       fontFamily: 'Roboto',
@@ -294,7 +281,7 @@ class _DetailsPageState extends State<DetailsPage> {
                               fontFamily: 'nunito',
                               fontSize: 12)),
                       const SizedBox(
-                        width: 4,
+                        width: 10,
                       ),
                       Container(
                           decoration: BoxDecoration(
