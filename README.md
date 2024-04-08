@@ -1,2 +1,2 @@
 # 2CP-Project
-project pluridisciplinire de deuxième semestre
+project pluridisciplinaire de deuxième semestre
