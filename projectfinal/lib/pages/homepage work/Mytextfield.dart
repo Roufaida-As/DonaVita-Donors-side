@@ -12,6 +12,7 @@ class Mytextfield extends StatelessWidget {
    
 
      TextField(
+      controller: controller,
             decoration: InputDecoration(
 
                 
