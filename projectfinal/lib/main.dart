@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:projectfinal/firebase_options.dart';
 import 'package:projectfinal/pages/home_screen.dart';
+import 'package:projectfinal/pages/homepage%20work/home_page.dart';
+import 'package:projectfinal/pages/notifications_page.dart';
 
 
 Future<void> main() async {
@@ -17,7 +19,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-        debugShowCheckedModeBanner: false, home: HomeScreen());
+    return   MaterialApp(
+        debugShowCheckedModeBanner: false, home: HomePage());
   }
 }
