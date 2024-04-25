@@ -6,6 +6,8 @@ import 'package:projectfinal/pages/homepage%20work/annonce_model.dart';
 import 'package:projectfinal/pages/homepage%20work/details_page.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:projectfinal/pages/homepage%20work/home_page.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class FormotherPage extends StatefulWidget {
   final Announcement annonce;
@@ -18,8 +20,7 @@ class FormotherPage extends StatefulWidget {
 class _FormotherPageState extends State<FormotherPage> {
   late Formulaireservice formulaireservice;
   FirebaseFirestore db = FirebaseFirestore.instance;
-  bool isuploaded=false;
-  bool visible=true;
+
 
   @override
   void initState() {
@@ -259,19 +260,17 @@ class _FormotherPageState extends State<FormotherPage> {
                             height: 45,
                           ),
                           GestureDetector(
-                            onTap: () {
+                            onTap: () async{
                               
-                        
-                              
-                              formulaireservice.addFormulaire(
+                        showDialog(context: context, builder: (context){
+return Center(child: LoadingAnimationWidget.prograssiveDots(color: AppColors.icons, size: 100),);
+                        },);
+                            
+                              await formulaireservice.addFormulaire(
                                   namecontroller.text,
                                   phonenumbercontroller.text,
                                   adresscontroller.text,
-                                  _counter.toString(),isuploaded,(uploaded){
-                                    setState(() {
-                                      uploaded=true;
-                                    });
-                                  });
+                                  _counter.toString());
                               phonenumbercontroller.clear();
                               adresscontroller.clear();
                               namecontroller.clear();
@@ -288,11 +287,18 @@ class _FormotherPageState extends State<FormotherPage> {
                                   "quantityDonated": newquantity.toString()
                                 });
                               });
+                               Navigator.of(context, rootNavigator: true).pop();
+                                 
+                             Navigator.of(context).pushReplacement(
+              MaterialPageRoute(
+                  builder: (BuildContext context) =>
+                      HomePage()),
+            );
 
                               setState(() {
                                 _counter = 0;
                               });
-                                print(isuploaded); 
+                             
                             },
                             child: Container(
                               width: 140,
@@ -314,12 +320,7 @@ class _FormotherPageState extends State<FormotherPage> {
                               ),
                             ),
                           ),
-                          Visibility(
-
-                            visible: visible && !isuploaded,
-                            child: CircularProgressIndicator(
-            
-            ),)
+                         
                         ],
                       ),
                     )

@@ -17,15 +17,12 @@ class Formulaireservice {
   }
 
   Future<void> addFormulaire(
-      String fullname, String phonenumber, String adress, String quantitydonated,bool isuploaded,Function(bool) toggle) {
+      String fullname, String phonenumber, String adress, String quantitydonated,) {
     return formulaireCollection.add({
       'fullname': fullname,
       'phonenumber': phonenumber,
       'adress': adress,
       'quantitydonated': quantitydonated,
-    }).then((value){
-   toggle(isuploaded);
-              
     });
   }
  

@@ -50,6 +50,7 @@ class _HomePageState extends State<HomePage> {
 
     return Scaffold(
         appBar: AppBar(
+           automaticallyImplyLeading: false,
           title: const Text(
             "Donations",
             textAlign: TextAlign.left,

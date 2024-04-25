@@ -36,7 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   height: 35,
                   width: 60,
                   decoration: BoxDecoration(
-                      color: AppColors.highicons,
+                      color:  _selectedIndex==0 ? AppColors.highicons: Colors.transparent,
                       borderRadius: BorderRadius.circular(16),
                       shape: BoxShape.rectangle),
                   child: const Icon(
@@ -51,7 +51,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     height: 35,
                     width: 60,
                     decoration: BoxDecoration(
-                        color: AppColors.highicons,
+                        color: _selectedIndex==1 ? AppColors.highicons: Colors.transparent,
                         borderRadius: BorderRadius.circular(16),
                         shape: BoxShape.rectangle),
                     child: const Icon(
@@ -65,7 +65,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     height: 35,
                     width: 60,
                     decoration: BoxDecoration(
-                        color: AppColors.highicons,
+                        color:  _selectedIndex==2 ? AppColors.highicons: Colors.transparent,
                         borderRadius: BorderRadius.circular(16),
                         shape: BoxShape.rectangle),
                     child: const Icon(
@@ -79,7 +79,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     height: 35,
                     width: 60,
                     decoration: BoxDecoration(
-                        color: AppColors.highicons,
+                        color:  _selectedIndex==3 ? AppColors.highicons: Colors.transparent,
                         borderRadius: BorderRadius.circular(16),
                         shape: BoxShape.rectangle),
                     child: const Icon(
@@ -99,7 +99,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
 Widget _buildPage(int index) {
   switch (index) {
-    case 0:
+  case 0:
       return CupertinoTabView(builder: ((context) {
         return const CupertinoPageScaffold(child: HomePage());
       }));

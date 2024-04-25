@@ -5,6 +5,8 @@ import 'package:projectfinal/pages/homepage%20work/Mytextfield.dart';
 
 import 'package:projectfinal/pages/homepage%20work/Fomulaire_service.dart';
 import 'package:projectfinal/pages/homepage%20work/annonce_model.dart';
+import 'package:projectfinal/pages/homepage%20work/home_page.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 class onsiteform extends StatefulWidget {
 final Announcement annonce;
  onsiteform({super.key, required this.annonce});
@@ -44,8 +46,7 @@ class _onsiteformState extends State<onsiteform> {
        width:80,
                   child: TextField(
                   controller: quantitycontroller,
-                              decoration: InputDecoration(
-                  
+                              decoration: InputDecoration(                  
                     suffixText: 'DA',
                     suffixStyle: TextStyle(color:AppColors.icons,fontFamily: 'Roboto',fontSize: 14,),
                  
@@ -67,24 +68,42 @@ class _onsiteformState extends State<onsiteform> {
               SizedBox(height: 45,),
               Center(
                 child: GestureDetector(
-                  onTap: () {
-                     int newquantity = int.parse(widget.annonce.quantityDonated) + int.parse(quantitycontroller.text);
-                    formulaireservice.addFormulaire(namecontroller.text,phonenumbercontroller.text,adresscontroller.text, quantitycontroller.text,_isuploaded,(_isuploaded){});
-                      setState(() {
-                  db.collection('Organisations')
-                      .doc(widget.annonce.orgId)
-                      .collection('annonces')
-                      .doc(widget.annonce.annonceId)
-                      .update({"quantityDonated": newquantity.toString()});
-                });
-                    phonenumbercontroller.clear();
-                    adresscontroller.clear();
-                    namecontroller.clear();
-                     quantitycontroller.clear();
-                   
-              
-               
-                },
+                  onTap: () async{
+                              
+                         showDialog(context: context, builder: (context){
+return Center(child: LoadingAnimationWidget.prograssiveDots(color: AppColors.icons, size: 100),);
+                        },);
+                            
+                              await formulaireservice.addFormulaire(
+                                  namecontroller.text,
+                                  phonenumbercontroller.text,
+                                  adresscontroller.text,
+                                  quantitycontroller.text);
+                              phonenumbercontroller.clear();
+                              adresscontroller.clear();
+                              namecontroller.clear();
+                              int newquantity = int.parse(widget.annonce.quantityDonated) + int.parse(quantitycontroller.text);
+                              setState(() {
+                                db
+                                    .collection('Organisations')
+                                    .doc(widget.annonce.orgId)
+                                    .collection('annonces')
+                                    .doc(widget.annonce.annonceId)
+                                    .update({
+                                  "quantityDonated": newquantity.toString()
+                                });
+                              });
+                               Navigator.of(context, rootNavigator: true).pop();
+                                 
+                             Navigator.of(context).pushReplacement(
+              MaterialPageRoute(
+                  builder: (BuildContext context) =>
+                      HomePage()),
+            );
+
+                              
+                             
+                            },
                     child: Container(
                       width: 140,
                       decoration: BoxDecoration(color: AppColors.icons,borderRadius: BorderRadius.circular(40)),
