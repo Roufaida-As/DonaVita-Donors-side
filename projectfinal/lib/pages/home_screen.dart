@@ -7,7 +7,7 @@ import 'package:projectfinal/pages/notifications_page.dart';
 import 'package:projectfinal/pages/profile_page.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+   const HomeScreen({super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -109,7 +109,7 @@ Widget _buildPage(int index) {
       }));
     case 2:
       return CupertinoTabView(builder: ((context) {
-        return const CupertinoPageScaffold(child: NotificationsPage());
+        return  CupertinoPageScaffold(child: NotificationPage());
       }));
     case 3:
       return CupertinoTabView(builder: ((context) {
