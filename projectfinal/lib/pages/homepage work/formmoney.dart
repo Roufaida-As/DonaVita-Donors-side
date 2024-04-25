@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:projectfinal/Theme/Colors.dart';
 import 'package:projectfinal/pages/homepage%20work/annonce_model.dart';
 import 'package:projectfinal/pages/homepage%20work/details_page.dart';
@@ -52,20 +51,20 @@ class _FormmoneyPageState extends State<FormmoneyPage> {
         ),
 
       
-      body: Padding(padding: EdgeInsets.only(top: 40,),
+      body: Padding(padding: const EdgeInsets.only(top: 40,),
       child:Container(
         height:double.infinity,
         width: double.infinity,
-        decoration: BoxDecoration(color: AppColors.background,borderRadius: BorderRadius.only(topLeft: Radius.circular(60),topRight:  Radius.circular(60),),
+        decoration: BoxDecoration(color: AppColors.background,borderRadius: const BorderRadius.only(topLeft: Radius.circular(60),topRight:  Radius.circular(60),),
            boxShadow: [
                                   BoxShadow(
-                                    color: Color(0xFF000000).withOpacity(0.2),
+                                    color: const Color(0xFF000000).withOpacity(0.2),
                                     spreadRadius: 0, // spread radius
                                     blurRadius: 30,
                                   )
                                 ],),
                                  child: Padding(
-                                  padding: EdgeInsets.only(top:40,left: 40),
+                                  padding: const EdgeInsets.only(top:40,left: 40),
 child: SingleChildScrollView(
   child: Column(
     mainAxisAlignment: MainAxisAlignment.start,
@@ -75,20 +74,20 @@ child: SingleChildScrollView(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [Row(children: [
           
-           Container(height:60,width:60,decoration:BoxDecoration(shape: BoxShape.circle),child: Image.network(widget.annonce.organizationLogoUrl, height: 60, width: 60)),
+           Container(height:60,width:60,decoration:const BoxDecoration(shape: BoxShape.circle),child: Image.network(widget.annonce.organizationLogoUrl, height: 60, width: 60)),
           
            Padding(
              padding: const EdgeInsets.only(top: 40,left: 5),
-             child: Text(widget.annonce.organizationName,style: TextStyle(fontFamily: 'Roboto',fontSize: 24,fontWeight: FontWeight.bold,color: AppColors.icons),),
+             child: Text(widget.annonce.organizationName,style: const TextStyle(fontFamily: 'Roboto',fontSize: 24,fontWeight: FontWeight.bold,color: AppColors.icons),),
            )
         ],),
-        SizedBox(height: 15,),
+        const SizedBox(height: 15,),
         Padding(
           padding: const EdgeInsets.only(left: 30.0),
-          child: Text(widget.annonce.annonceTitle,textAlign: TextAlign.left,style: TextStyle(fontFamily: 'Roboto',fontSize: 18,fontWeight: FontWeight.w500,color: AppColors.icons),),
+          child: Text(widget.annonce.annonceTitle,textAlign: TextAlign.left,style: const TextStyle(fontFamily: 'Roboto',fontSize: 18,fontWeight: FontWeight.w500,color: AppColors.icons),),
         ),
-        Padding(padding: EdgeInsets.all(20),
-        child: Container(
+        Padding(padding: const EdgeInsets.all(20),
+        child: SizedBox(
           width: double.infinity,
           child: Center(
             child: Row(
@@ -108,14 +107,14 @@ child: SingleChildScrollView(
                           });
                       
                         },
-                        child: Text(
+                        child: const Text(
                           'Onsite',
                         style: TextStyle(fontFamily: 'Nunito',fontSize: 20,fontWeight: FontWeight.w600,color: AppColors.highicons),
                         ),
                       ),
                     ),
                   ),
-                  SizedBox(width: 60,),
+                  const SizedBox(width: 60,),
                    Container(
                     width: 100,
                     decoration: BoxDecoration(  borderRadius: BorderRadius.circular(2),border: Border(bottom: BorderSide(color: onsitePressed? Colors.transparent : AppColors.highicons, width: 4,))) ,
@@ -128,7 +127,7 @@ child: SingleChildScrollView(
                           });
                       
                         },
-                        child: Text(
+                        child: const Text(
                           'Online',
                         style: TextStyle(fontFamily: 'Nunito',fontSize: 20,fontWeight: FontWeight.w600,color: AppColors.highicons),
                         ),

@@ -5,7 +5,6 @@ import 'package:projectfinal/pages/homepage%20work/annonce_model.dart';
 
 import 'package:projectfinal/pages/homepage%20work/formmoney.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
-import 'package:projectfinal/pages/homepage%20work/home_page.dart';
 
 class DetailsPage extends StatefulWidget {
   final Announcement annonce;

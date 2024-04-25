@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:projectfinal/Theme/colors.dart';
 
@@ -54,8 +53,8 @@ class _NotificationPageState extends State<NotificationPage> {
           const SizedBox(height: 20),
           Expanded(
             child: _selectedCategory == 'Recent'
-                ? RecentContent()
-                : FavoriteContent(),
+                ? const RecentContent()
+                : const FavoriteContent(),
           ),
         ],
       ),
@@ -68,7 +67,7 @@ class CategoryButton extends StatelessWidget {
   final bool isSelected;
   final VoidCallback onSelect;
 
-  CategoryButton({super.key, 
+  const CategoryButton({super.key, 
     required this.label,
     required this.isSelected,
     required this.onSelect,
@@ -146,7 +145,7 @@ class NotificationItem extends StatefulWidget {
   final String orgId;
   final bool isFirst;
 
-  NotificationItem({super.key, 
+  const NotificationItem({super.key, 
     required this.orgName,
     required this.orgLogoUrl,
     required this.orgId,
@@ -303,7 +302,7 @@ class FavoriteItem extends StatelessWidget {
   final Timestamp timestamp;
   final String docId;
 
-  FavoriteItem({super.key, 
+  const FavoriteItem({super.key, 
     required this.orgName,
     required this.orgLogoUrl,
     required this.description,

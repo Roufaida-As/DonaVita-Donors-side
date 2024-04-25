@@ -109,7 +109,7 @@ Widget _buildPage(int index) {
       }));
     case 2:
       return CupertinoTabView(builder: ((context) {
-        return  CupertinoPageScaffold(child: NotificationPage());
+        return  const CupertinoPageScaffold(child: NotificationPage());
       }));
     case 3:
       return CupertinoTabView(builder: ((context) {

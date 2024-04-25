@@ -2,9 +2,10 @@ import "dart:async";
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:projectfinal/Theme/colors.dart';
+import 'package:projectfinal/pages/profile_page.dart';
 import 'package:projectfinal/pages/verify_email_page.dart';
-import 'package:projectfinal/pages/home_screen.dart';
 import 'package:projectfinal/pages/login_screen.dart';
+import 'package:get/get.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -18,21 +19,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Future.delayed(const Duration(seconds: 3), () {
-      if (FirebaseAuth.instance.currentUser != null) {
-        if (FirebaseAuth.instance.currentUser!.emailVerified == false) {
-          Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (BuildContext context) => const VerifyEmail()),
-          );
-        } else {
-          Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (BuildContext context) =>  const HomeScreen()),
-          );
-        }
-      } else {
-        Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (BuildContext context) => const LoginPage()),
-        );
-      }
+      initialScreen();
     });
   }
 
@@ -56,5 +43,23 @@ class _SplashScreenState extends State<SplashScreen> {
         ),
       ),
     );
+  }
+}
+
+void initialScreen() {
+  if (FirebaseAuth.instance.currentUser != null) {
+    if (FirebaseAuth.instance.currentUser!.emailVerified == false) {
+      Get.to(() => const VerifyEmail(),
+          transition: Transition.fadeIn,
+          duration: const Duration(milliseconds: 500));
+    } else {
+      Get.to(() => const ProfilePage(),
+          transition: Transition.fadeIn,
+          duration: const Duration(milliseconds: 500));
+    }
+  } else {
+    Get.to(() => const LoginPage(),
+        transition: Transition.fadeIn,
+        duration: const Duration(milliseconds: 500));
   }
 }

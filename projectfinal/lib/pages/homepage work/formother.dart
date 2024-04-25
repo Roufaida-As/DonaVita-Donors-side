@@ -292,7 +292,7 @@ return Center(child: LoadingAnimationWidget.prograssiveDots(color: AppColors.ico
                              Navigator.of(context).pushReplacement(
               MaterialPageRoute(
                   builder: (BuildContext context) =>
-                      HomePage()),
+                      const HomePage()),
             );
 
                               setState(() {
