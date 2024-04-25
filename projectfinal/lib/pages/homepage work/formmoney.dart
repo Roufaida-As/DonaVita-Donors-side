@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:projectfinal/Theme/Colors.dart';
 import 'package:projectfinal/pages/homepage%20work/annonce_model.dart';
 import 'package:projectfinal/pages/homepage%20work/details_page.dart';
+import 'package:projectfinal/pages/homepage%20work/onlineform.dart';
 import 'package:projectfinal/pages/homepage%20work/onsiteform.dart';
 class FormmoneyPage extends StatefulWidget {
   final Announcement annonce;
@@ -33,7 +34,7 @@ class _FormmoneyPageState extends State<FormmoneyPage> {
           ),
           leading: GestureDetector(
             onTap: () {
-              Navigator.of(context).push(
+              Navigator.of(context).pushReplacement(
                 MaterialPageRoute(
                     builder: (BuildContext context) =>
                         DetailsPage(annonce: widget.annonce)),
@@ -68,7 +69,7 @@ class _FormmoneyPageState extends State<FormmoneyPage> {
 child: SingleChildScrollView(
   child: Column(
     mainAxisAlignment: MainAxisAlignment.start,
-    crossAxisAlignment: CrossAxisAlignment.center,
+   crossAxisAlignment: CrossAxisAlignment.start,
     children: [
       Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -141,11 +142,11 @@ child: SingleChildScrollView(
           ),
         ),
         ),
-        onsiteform(annonce: widget.annonce),
+    
         ]
         ,
       ),
-        
+        onsitePressed? onsiteform(annonce: widget.annonce) : onlineform(annonce: widget.annonce) ,    
  ]))))) );
   }
 }

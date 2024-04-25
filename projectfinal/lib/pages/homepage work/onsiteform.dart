@@ -18,11 +18,11 @@ class _onsiteformState extends State<onsiteform> {
    FirebaseFirestore db = FirebaseFirestore.instance;
      void initState() {
     super.initState();
-    formulaireservice = Formulaireservice(widget.annonce.orgId, widget.annonce.annonceId);
+    formulaireservice = Formulaireservice(widget.annonce.orgId, widget.annonce.annonceId,);
   }
 
 
-  
+   bool _isuploaded=false;
   TextEditingController namecontroller = TextEditingController();
   TextEditingController phonenumbercontroller = TextEditingController();
   TextEditingController adresscontroller = TextEditingController();
@@ -30,7 +30,7 @@ class _onsiteformState extends State<onsiteform> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(20.0),
+      padding: const EdgeInsets.only(right:30.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
             children: [ 
@@ -68,19 +68,22 @@ class _onsiteformState extends State<onsiteform> {
               Center(
                 child: GestureDetector(
                   onTap: () {
-                    formulaireservice.addFormulaire(namecontroller.text,phonenumbercontroller.text,adresscontroller.text, quantitycontroller.text);
-                    phonenumbercontroller.clear();
-                    adresscontroller.clear();
-                    namecontroller.clear();
-                    quantitycontroller.clear();
-                    int newquantity = int.parse(widget.annonce.quantityDonated) + int.parse(quantitycontroller.text);
-                setState(() {
+                     int newquantity = int.parse(widget.annonce.quantityDonated) + int.parse(quantitycontroller.text);
+                    formulaireservice.addFormulaire(namecontroller.text,phonenumbercontroller.text,adresscontroller.text, quantitycontroller.text,_isuploaded,(_isuploaded){});
+                      setState(() {
                   db.collection('Organisations')
                       .doc(widget.annonce.orgId)
                       .collection('annonces')
                       .doc(widget.annonce.annonceId)
                       .update({"quantityDonated": newquantity.toString()});
                 });
+                    phonenumbercontroller.clear();
+                    adresscontroller.clear();
+                    namecontroller.clear();
+                     quantitycontroller.clear();
+                   
+              
+               
                 },
                     child: Container(
                       width: 140,

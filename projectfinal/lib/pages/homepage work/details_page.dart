@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:projectfinal/Theme/colors.dart';
-import 'package:projectfinal/pages/formother.dart';
+import 'package:projectfinal/pages/homepage%20work/formother.dart';
 import 'package:projectfinal/pages/homepage%20work/annonce_model.dart';
 
 import 'package:projectfinal/pages/homepage%20work/formmoney.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
+import 'package:projectfinal/pages/homepage%20work/home_page.dart';
 
 class DetailsPage extends StatefulWidget {
   final Announcement annonce;
@@ -49,6 +50,7 @@ class _DetailsPageState extends State<DetailsPage> {
         leading: const Padding(
           padding: EdgeInsets.only(left: 10.0),
           child: BackButton(
+            
             color: AppColors.highicons,
           ),
         ),

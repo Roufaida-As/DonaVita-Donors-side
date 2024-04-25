@@ -18,6 +18,8 @@ class FormotherPage extends StatefulWidget {
 class _FormotherPageState extends State<FormotherPage> {
   late Formulaireservice formulaireservice;
   FirebaseFirestore db = FirebaseFirestore.instance;
+  bool isuploaded=false;
+  bool visible=true;
 
   @override
   void initState() {
@@ -61,7 +63,7 @@ class _FormotherPageState extends State<FormotherPage> {
         ),
         leading: GestureDetector(
           onTap: () {
-            Navigator.of(context).push(
+            Navigator.of(context).pushReplacement(
               MaterialPageRoute(
                   builder: (BuildContext context) =>
                       DetailsPage(annonce: widget.annonce)),
@@ -258,11 +260,18 @@ class _FormotherPageState extends State<FormotherPage> {
                           ),
                           GestureDetector(
                             onTap: () {
+                              
+                        
+                              
                               formulaireservice.addFormulaire(
                                   namecontroller.text,
                                   phonenumbercontroller.text,
                                   adresscontroller.text,
-                                  _counter.toString());
+                                  _counter.toString(),isuploaded,(uploaded){
+                                    setState(() {
+                                      uploaded=true;
+                                    });
+                                  });
                               phonenumbercontroller.clear();
                               adresscontroller.clear();
                               namecontroller.clear();
@@ -283,6 +292,7 @@ class _FormotherPageState extends State<FormotherPage> {
                               setState(() {
                                 _counter = 0;
                               });
+                                print(isuploaded); 
                             },
                             child: Container(
                               width: 140,
@@ -304,6 +314,12 @@ class _FormotherPageState extends State<FormotherPage> {
                               ),
                             ),
                           ),
+                          Visibility(
+
+                            visible: visible && !isuploaded,
+                            child: CircularProgressIndicator(
+            
+            ),)
                         ],
                       ),
                     )
