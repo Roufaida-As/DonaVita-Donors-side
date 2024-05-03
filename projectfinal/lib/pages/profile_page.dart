@@ -23,9 +23,6 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          leading: const BackButton(
-            color: AppColors.icons,
-          ),
           actions: [
             TextButton(
                 onPressed: _goToEditProfilePage,
