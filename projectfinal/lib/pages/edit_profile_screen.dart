@@ -26,13 +26,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       style: ButtonStyle(
                           backgroundColor:
                               MaterialStateProperty.all(Colors.transparent),
-                          shape:
-                              MaterialStateProperty.all<RoundedRectangleBorder>(
-                                  RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(100.0),
-                                      side: const BorderSide(
-                                          color: AppColors.highicons,
-                                          width: 2)))),
+                                          ),
                       child: const Icon(
                         Icons.arrow_back,
                         color: AppColors.highicons,
