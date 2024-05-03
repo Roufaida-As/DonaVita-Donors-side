@@ -28,7 +28,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 onPressed: _goToEditProfilePage,
                 child: const Text('Edit profile',
                     style: TextStyle(
-                        fontSize: 16,
+                        fontSize: 17,
                         color: AppColors.icons,
                         fontWeight: FontWeight.bold))),
           ],
@@ -117,7 +117,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           Text(
                             "Log out",
                             style: TextStyle(
-                                fontSize: 15,
+                                fontSize: 17,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.red),
                           )
