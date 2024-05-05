@@ -1,3 +1,4 @@
+// ignore: file_names
 import "package:flutter/material.dart";
 
 class AppColors {
@@ -8,5 +9,6 @@ class AppColors {
   static const Color smallfont = Color(0xFFD7DFE4);
   static const Color details = Color(0xFF2B4B55);
   static const Color clear = Color(0xFFB4D9D0);
-  static const Color Containercolor = Color(0xFFFEFFDF);
+  static const Color smalltext = Color(0xFFCACACA);
+  static const Color containercolor = Color(0xFFFEFFDF);
 }

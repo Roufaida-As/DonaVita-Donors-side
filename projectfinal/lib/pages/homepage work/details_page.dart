@@ -49,7 +49,6 @@ class _DetailsPageState extends State<DetailsPage> {
         leading: const Padding(
           padding: EdgeInsets.only(left: 10.0),
           child: BackButton(
-            
             color: AppColors.highicons,
           ),
         ),
@@ -59,7 +58,7 @@ class _DetailsPageState extends State<DetailsPage> {
         child: Container(
           height: double.infinity,
           decoration: BoxDecoration(
-              color: AppColors.Containercolor,
+              color: AppColors.containercolor,
               borderRadius: BorderRadius.circular(10)),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -93,7 +92,7 @@ class _DetailsPageState extends State<DetailsPage> {
                                   end: Alignment.bottomCenter,
                                   colors: [
                                     Colors.transparent,
-                                    AppColors.Containercolor.withOpacity(0.6),
+                                    AppColors.containercolor.withOpacity(0.6),
                                   ],
                                 ),
                               ),

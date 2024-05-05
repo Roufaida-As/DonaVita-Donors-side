@@ -1,13 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:projectfinal/Theme/colors.dart';
+import 'package:projectfinal/Theme/Colors.dart';
+import 'package:projectfinal/components/bottom_nav_bar.dart';
 import 'package:projectfinal/pages/chat%20work/chat_page.dart';
 import 'package:projectfinal/pages/homepage%20work/home_page.dart';
 import 'package:projectfinal/pages/NotificationPage_work/NotificationPage.dart';
 import 'package:projectfinal/pages/profile_page.dart';
 
 class HomeScreen extends StatefulWidget {
-   const HomeScreen({super.key});
+  const HomeScreen({super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -36,7 +37,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   height: 35,
                   width: 60,
                   decoration: BoxDecoration(
-                      color:  _selectedIndex==0 ? AppColors.highicons: Colors.transparent,
+                      color: _selectedIndex == 0
+                          ? AppColors.highicons
+                          : Colors.transparent,
                       borderRadius: BorderRadius.circular(16),
                       shape: BoxShape.rectangle),
                   child: const Icon(
@@ -51,7 +54,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     height: 35,
                     width: 60,
                     decoration: BoxDecoration(
-                        color: _selectedIndex==1 ? AppColors.highicons: Colors.transparent,
+                        color: _selectedIndex == 1
+                            ? AppColors.highicons
+                            : Colors.transparent,
                         borderRadius: BorderRadius.circular(16),
                         shape: BoxShape.rectangle),
                     child: const Icon(
@@ -65,7 +70,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     height: 35,
                     width: 60,
                     decoration: BoxDecoration(
-                        color:  _selectedIndex==2 ? AppColors.highicons: Colors.transparent,
+                        color: _selectedIndex == 2
+                            ? AppColors.highicons
+                            : Colors.transparent,
                         borderRadius: BorderRadius.circular(16),
                         shape: BoxShape.rectangle),
                     child: const Icon(
@@ -79,7 +86,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     height: 35,
                     width: 60,
                     decoration: BoxDecoration(
-                        color:  _selectedIndex==3 ? AppColors.highicons: Colors.transparent,
+                        color: _selectedIndex == 3
+                            ? AppColors.highicons
+                            : Colors.transparent,
                         borderRadius: BorderRadius.circular(16),
                         shape: BoxShape.rectangle),
                     child: const Icon(
@@ -99,7 +108,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
 Widget _buildPage(int index) {
   switch (index) {
-  case 0:
+    case 0:
       return CupertinoTabView(builder: ((context) {
         return const CupertinoPageScaffold(child: HomePage());
       }));
@@ -109,7 +118,7 @@ Widget _buildPage(int index) {
       }));
     case 2:
       return CupertinoTabView(builder: ((context) {
-        return  const CupertinoPageScaffold(child: NotificationPage());
+        return const CupertinoPageScaffold(child: NotificationPage());
       }));
     case 3:
       return CupertinoTabView(builder: ((context) {

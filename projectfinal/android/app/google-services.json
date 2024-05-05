@@ -43,6 +43,7 @@
     },
     {
       "client_info": {
+<<<<<<< HEAD
         "mobilesdk_app_id": "1:982977699496:android:f5172e10d271a3debfec9d",
         "android_client_info": {
           "package_name": "com.example.flutter_application_2"
@@ -82,10 +83,26 @@
         "mobilesdk_app_id": "1:982977699496:android:e86527587689320dbfec9d",
         "android_client_info": {
           "package_name": "com.example.projectfinal"
+=======
+        "mobilesdk_app_id": "1:982977699496:android:89cf3790659e3621bfec9d",
+        "android_client_info": {
+          "package_name": "com.example.secondapp"
+>>>>>>> b053d6c (login and sign up)
         }
       },
       "oauth_client": [
         {
+<<<<<<< HEAD
+=======
+          "client_id": "982977699496-089qkjiveu7l871qnro90cq420l2meci.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.secondapp",
+            "certificate_hash": "e46dcdda616decffd401ba0271dc499171acfe5e"
+          }
+        },
+        {
+>>>>>>> b053d6c (login and sign up)
           "client_id": "982977699496-98k1c03phgdoijkisd014v7c9jo60vd9.apps.googleusercontent.com",
           "client_type": 3
         }

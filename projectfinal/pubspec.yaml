@@ -28,6 +28,7 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  
   flutter:
     sdk: flutter
   flutter_svg: ^2.0.10+1
@@ -38,13 +39,14 @@ dependencies:
   cupertino_icons: ^1.0.6
   firebase_core: ^2.27.0
   google_nav_bar: ^5.0.6
-  firebase_auth: ^4.17.9
   percent_indicator: ^4.0.1
   cloud_firestore: ^4.15.9
   firebase_storage: ^11.6.10
+  firebase_messaging: ^14.9.1
   loading_animation_widget: ^1.2.1
   get: ^4.6.6
-  firebase_messaging: ^14.9.1
+  firebase_auth: ^4.19.4
+  google_sign_in: ^6.2.1
 
 dev_dependencies:
   flutter_test:
@@ -75,9 +77,6 @@ flutter:
     - assets/Icons/Rectangle 7.png
     - assets/Icons/Name.png
     - assets/Icons/Slogan.png
-    - assets/Icons/Ellipse 3.png
-    - assets/Icons/eva_arrow-back-outline.png
-    - assets/Icons/Rectangle2.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 
@@ -89,10 +88,10 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
+  fonts:
+    - family: Nunito
+      fonts:
+        - asset: fonts/Nunito-Regular.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro
