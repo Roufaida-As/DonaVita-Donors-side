@@ -1,5 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:projectfinal/Theme/Colors.dart';
+	
+FirebaseAuth auth = FirebaseAuth.instance;
 
 class EditProfileScreen extends StatefulWidget {
   const EditProfileScreen({super.key});
@@ -12,28 +15,61 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   // ignore: constant_identifier_names
   static const double IMAGE_HORIZENTAL_PADDING = 24;
 
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
+  Future<void> hardCodedSignIn() async {
+    try {
+      UserCredential userCredential = await auth.signInWithEmailAndPassword(
+        email: "fz.mansouri@esi-sba.dz",
+        password: "updated-password",
+      );
+      print("================ SignIn success ===============");
+
+      // Handle successful login
+    } catch (e) {
+      print("Failed to sign in: $e");
+    }
+  }
+
+  Future<dynamic> updateUserInfo(newName, newEmail, newPhoneNumber) async {
+    try {
+      await hardCodedSignIn();
+      User? currentUser = auth.currentUser;
+      await currentUser?.updateDisplayName(newName);
+      // ignore: deprecated_member_use
+      //await currentUser?.updateEmail(newEmail);
+      //await currentUser?.updatePhoneNumber(PhoneAuthCredential());
+
+      print(auth.currentUser);
+      print("--------------- updated with success --------------- ");
+    } catch (e) {
+      print("Failed to update : $e");
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-            automaticallyImplyLeading: false,
-            leading:Padding(
-                padding: const EdgeInsets.only(top: 12 , left: 12),
-                    child: TextButton(
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                      style: ButtonStyle(
-                          backgroundColor:
-                              MaterialStateProperty.all(Colors.transparent),
-                                          ),
-                      child: const Icon(
-                        Icons.arrow_back,
-                        color: AppColors.highicons,
-                      ),
-                    ),
+          automaticallyImplyLeading: false,
+          leading: Padding(
+            padding: const EdgeInsets.only(top: 12, left: 12),
+            child: TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all(Colors.transparent),
+              ),
+              child: const Icon(
+                Icons.arrow_back,
+                color: AppColors.highicons,
               ),
             ),
+          ),
+        ),
         body: Padding(
           padding:
               const EdgeInsets.symmetric(horizontal: IMAGE_HORIZENTAL_PADDING),
@@ -59,9 +95,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               const SizedBox(
                 height: 10,
               ),
-              const TextField(
+              TextField(
                 keyboardType: TextInputType.emailAddress,
-                decoration: InputDecoration(
+                controller: _nameController,
+                decoration: const InputDecoration(
                     focusedBorder: UnderlineInputBorder(
                       borderSide: BorderSide(color: AppColors.icons),
                     ),
@@ -75,9 +112,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               const SizedBox(
                 height: 10,
               ),
-              const TextField(
+              TextField(
                 keyboardType: TextInputType.emailAddress,
-                decoration: InputDecoration(
+                controller: _emailController,
+                decoration: const InputDecoration(
                     focusedBorder: UnderlineInputBorder(
                       borderSide: BorderSide(color: AppColors.icons),
                     ),
@@ -87,9 +125,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     ),
                     fillColor: AppColors.font),
               ),
-              const TextField(
+              TextField(
                 keyboardType: TextInputType.phone,
-                decoration: InputDecoration(
+                controller: _passwordController,
+                decoration: const InputDecoration(
                     focusedBorder: UnderlineInputBorder(
                       borderSide: BorderSide(color: AppColors.icons),
                     ),
@@ -114,7 +153,12 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                   RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(18.0),
                           ))),
-                      onPressed: () {},
+                      onPressed: () async {
+                        //User? currentUser = auth.currentUser;
+                        //await currentUser?.sendEmailVerification();
+                        await updateUserInfo(_nameController.text,
+                            _emailController.text, _passwordController.text);
+                      },
                       child: const Text(
                         "Save changes",
                         style: TextStyle(),
