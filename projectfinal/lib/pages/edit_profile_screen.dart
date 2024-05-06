@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:projectfinal/Theme/Colors.dart';
-	
+
 FirebaseAuth auth = FirebaseAuth.instance;
 
 class EditProfileScreen extends StatefulWidget {

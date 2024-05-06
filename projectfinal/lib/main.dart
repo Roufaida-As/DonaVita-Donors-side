@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:projectfinal/firebase_options.dart';
 import 'package:projectfinal/pages/NotificationPage_work/Firebase_api.dart';
 import 'package:projectfinal/pages/home_screen.dart';
+import 'package:projectfinal/pages/loginwork/login_screen.dart';
 import 'package:projectfinal/pages/splash_screen.dart';
 
 final navigatorKey = GlobalKey<NavigatorState>();
@@ -23,6 +24,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-        debugShowCheckedModeBanner: false, home: SplashScreen());
+        debugShowCheckedModeBanner: false, home: LoginPage());
   }
 }

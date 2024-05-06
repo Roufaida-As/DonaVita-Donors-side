@@ -94,7 +94,7 @@ class _forgetPasswordState extends State<forgetPassword> {
 
               const SizedBox(height: 20),
 
-              Image.asset("assets/Icons/exclamation.png"),
+              Image.asset("assets/Icons/Vector.png"),
 
               const SizedBox(height: 20),
 

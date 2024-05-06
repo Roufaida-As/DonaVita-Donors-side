@@ -270,6 +270,7 @@ class _LoginPageState extends State<LoginPage> {
               onTap: signUserIn,
               buttonText: 'Login',
             ),
+
             const SizedBox(height: 40),
             Text(
               "Or sign in with",
@@ -293,7 +294,9 @@ class _LoginPageState extends State<LoginPage> {
               ],
             ),
             const SizedBox(height: 33),
+
             // sign up
+
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

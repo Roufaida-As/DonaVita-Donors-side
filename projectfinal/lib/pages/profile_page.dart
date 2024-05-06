@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:projectfinal/Theme/Colors.dart';
 import 'package:projectfinal/pages/edit_profile_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:projectfinal/pages/login_screen.dart';
+import 'package:projectfinal/pages/loginwork/login_screen.dart';
 
 FirebaseAuth auth = FirebaseAuth.instance;
 
@@ -37,7 +37,7 @@ class _ProfilePageState extends State<ProfilePage> {
       "name": "Fatima mansouri"
     };
   }
-  
+
   // ignore: constant_identifier_names
   static const double IMAGE_HORIZENTAL_PADDING = 24;
   Future<void> _goToEditProfilePage() async {
@@ -58,7 +58,8 @@ class _ProfilePageState extends State<ProfilePage> {
 // this function to create users since the signUp is not ready yet , it should be removed after the login is done
   Future<void> signUp() async {
     try {
-      UserCredential userCredential = await auth.createUserWithEmailAndPassword(
+      UserCredential userCre2dential =
+          await auth.createUserWithEmailAndPassword(
         email: "fz.mansouri@esi-sba.dz",
         password: "fatima12345",
       );
