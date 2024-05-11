@@ -30,8 +30,9 @@ class _NotificationPageState extends State<NotificationPage> {
         title: const Text(
           'Notifications',
           style: TextStyle(
-            color: AppColors.highicons,
-            fontFamily: 'Nunito',
+            fontSize: 25,
+              color: AppColors.highicons,
+              fontWeight: FontWeight.bold
           ),
         ),
       ),
