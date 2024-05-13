@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:projectfinal/Theme/Colors.dart';
+import 'package:projectfinal/Theme/colors.dart';
 import 'package:projectfinal/pages/chat%20work/chat_room.dart';
 
 class ChatPage extends StatelessWidget {
@@ -13,7 +13,8 @@ class ChatPage extends StatelessWidget {
           'Chat',
           textAlign: TextAlign.left,
           style: TextStyle(
-              fontSize: 25,
+              fontSize: 30,
+              fontFamily: 'Nunito',
               color: AppColors.highicons,
               fontWeight: FontWeight.bold),
         ),

@@ -10,13 +10,13 @@ class Announcement {
   final String orgId;
   final String annonceId;
   late final String imageUrl;
-
+  final String orgVille;
 
   //final String organizationLogoPath;
   //final String announcementImagePath;
-  
 
   Announcement({
+    required this.orgVille,
     required this.organizationName,
     required this.organizationLogoUrl,
     required this.category,
@@ -29,10 +29,8 @@ class Announcement {
     required this.annonceId,
     required this.orgId,
 
-   // this.organizationLogoUrl = '', // Initialized as empty string
+    // this.organizationLogoUrl = '', // Initialized as empty string
     //this.imageUrl = '', // Initialized as empty string
-    
-
   });
 
   // Add any additional methods if needed

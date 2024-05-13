@@ -17,7 +17,7 @@ class FoodCategoryPage extends StatelessWidget {
             'Food Category',
             textAlign: TextAlign.left,
             style: TextStyle(
-                fontSize: 25,
+                fontSize: 30,
                 fontFamily: 'Nunito',
                 color: AppColors.highicons,
                 fontWeight: FontWeight.bold),

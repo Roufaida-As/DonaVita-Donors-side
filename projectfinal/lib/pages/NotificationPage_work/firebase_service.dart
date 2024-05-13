@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:projectfinal/components/dialog.dart';
 
 class FirebaseService {
   // Function to add token to Firestore
@@ -8,9 +9,9 @@ class FirebaseService {
       await FirebaseFirestore.instance.collection('tokens').add({
         'token': token,
       });
-      print('Token added successfully');
+      Dialogs.showSnackBar("Success", "Token added successfully", false);
     } catch (error) {
-      print('Error adding token: $error');
+      Dialogs.showSnackBar("Error", "Error adding token: $error", true);
     }
   }
 
@@ -21,10 +22,10 @@ class FirebaseService {
       if (token != null) {
         await addTokenToFirestore(token);
       } else {
-        print('Failed to get token');
+        Dialogs.showSnackBar("Error", "Failed to get token", true);
       }
     } catch (error) {
-      print('Error getting token: $error');
+      Dialogs.showSnackBar("Error", "Error getting token: $error", true);
     }
   }
 }

@@ -1,11 +1,11 @@
 import 'dart:async';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import "package:get/get.dart";
+import 'package:get/get.dart';
 import 'package:projectfinal/Theme/colors.dart';
 import 'package:projectfinal/components/button.dart';
 import 'package:projectfinal/pages/home_screen.dart';
+
 
 class VerifyEmail extends StatefulWidget {
   const VerifyEmail({super.key});
@@ -22,10 +22,8 @@ class _VerifyEmailState extends State<VerifyEmail> {
     timer = Timer.periodic(const Duration(seconds: 4), (_) async {
       await FirebaseAuth.instance.currentUser!.reload();
       bool result = FirebaseAuth.instance.currentUser!.emailVerified;
-
       if (result) {
-        print('email has been verified');
-        Get.offAll(() => const HomeScreen());
+        Get.offAll(() => const HomeScreen(), transition: Transition.fadeIn);
       }
     });
     super.initState();
@@ -42,13 +40,18 @@ class _VerifyEmailState extends State<VerifyEmail> {
     return Scaffold(
       body: Center(
           child: Padding(
+            
         padding: const EdgeInsets.all(20.0),
         child: Column(
+          
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+      
             //logo
             Image.asset("assets/Icons/logo 2.png"),
-            const SizedBox(height: 5),
+            const SizedBox(
+              height: 5,
+            ),
             //title
 
             const Text(
@@ -78,6 +81,7 @@ class _VerifyEmailState extends State<VerifyEmail> {
 
             const Text(
               "We just sent an email to you",
+              textAlign: TextAlign.center,
               style: TextStyle(
                 color: AppColors.highicons,
                 fontFamily: 'Nunito',
@@ -87,6 +91,7 @@ class _VerifyEmailState extends State<VerifyEmail> {
             ),
             const Text(
               "Click the link in the email to verify your account ",
+              textAlign: TextAlign.center,
               style: TextStyle(
                 color: AppColors.highicons,
                 fontFamily: 'Nunito',

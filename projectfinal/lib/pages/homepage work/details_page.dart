@@ -20,7 +20,7 @@ class _DetailsPageState extends State<DetailsPage> {
   @override
   void initState() {
     super.initState();
-    updateDonationProgress();
+    // updateDonationProgress();
   }
 
   void updateDonationProgress() {
@@ -41,7 +41,8 @@ class _DetailsPageState extends State<DetailsPage> {
           "Details",
           textAlign: TextAlign.left,
           style: TextStyle(
-            fontSize: 32,
+            fontSize: 30,
+            fontFamily: 'Nunito',
             color: AppColors.highicons,
             fontWeight: FontWeight.bold,
           ),
@@ -96,15 +97,19 @@ class _DetailsPageState extends State<DetailsPage> {
                                   ],
                                 ),
                               ),
-                              child: Image.asset('assets/Icons/Rectangle2.png'),
+                              child: Image.network(widget.annonce.imageUrl,
+                                  fit: BoxFit.cover),
                             ),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Image.network(
-                                    widget.annonce.organizationLogoUrl,
-                                    height: 70,
-                                    width: 70),
+                                ClipOval(
+                                  child: Image.network(
+                                      widget.annonce.organizationLogoUrl,
+                                      height: 70,
+                                      fit: BoxFit.cover,
+                                      width: 70),
+                                ),
                                 Text(widget.annonce.organizationName,
                                     style: const TextStyle(
                                       fontFamily: 'Roboto',
@@ -157,8 +162,7 @@ class _DetailsPageState extends State<DetailsPage> {
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 32, right: 32),
-                child: Container(
-                    child: Column(
+                child: Column(
                   children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -305,7 +309,7 @@ class _DetailsPageState extends State<DetailsPage> {
                       height: 40,
                     ),
                   ],
-                )),
+                ),
               ),
             ],
           ),

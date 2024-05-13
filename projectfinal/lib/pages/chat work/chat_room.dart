@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:projectfinal/Theme/Colors.dart';
+import 'package:projectfinal/Theme/colors.dart';
 import 'package:projectfinal/pages/chat%20work/message_model.dart';
 
 class ChatRoom extends StatelessWidget {

@@ -45,17 +45,18 @@ class _AnnonceCardState extends State<AnnonceCard> {
           height: 183,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
-            image: const DecorationImage(
-              image: AssetImage("assets/Icons/Rectangle 7.png"
-                  //announcement.imageUrl (from second app)
-                  ), // Load the image from URL
+            image: DecorationImage(
+              image: NetworkImage(
+                widget.announcement.imageUrl,
+              ),
+              fit: BoxFit.cover,
             ),
           ),
           child: Stack(
             children: [
               Positioned(
-                top: 105,
-                left: 9,
+                top: 108,
+                left: 12,
                 //organisation name
                 child: Text(
                   widget.announcement.organizationName,
@@ -66,15 +67,19 @@ class _AnnonceCardState extends State<AnnonceCard> {
                 ),
               ),
               Positioned(
-                top: 60,
-                left: 18,
+                top: 45,
+                left: 12,
                 child: SizedBox(
-                  width: 60,
-                  height: 60,
+                  width: 65,
+                  height: 65,
                   //organisation logo
-                  child: Image.asset("assets/Icons/Ellipse 8.png"
-                      // announcement.organizationLogoUrl,(from second app)
-                      ),
+                  child: ClipOval(
+                    child: Image.network(
+                        width: 65,
+                        height: 65,
+                        fit: BoxFit.cover,
+                        widget.announcement.organizationLogoUrl),
+                  ),
                 ),
               ),
               const SizedBox(height: 20),
@@ -126,32 +131,34 @@ class _AnnonceCardState extends State<AnnonceCard> {
                   padding: const EdgeInsets.symmetric(horizontal: 7),
                   decoration: const BoxDecoration(color: Color(0xffFEFFDF)),
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       //annonce title
-
                       Expanded(
                         child: Text(
-                          "${widget.announcement.annonceTitle} : ${widget.announcement.description.length <= 30 ? widget.announcement.description : '${widget.announcement.description.substring(0, 25)}...'}",
+                          "${widget.announcement.annonceTitle} ",
                           style: const TextStyle(
-                              fontSize: 12,
+                              fontSize: 13,
                               fontFamily: 'Roboto',
                               fontWeight: FontWeight.bold,
                               color: AppColors.highicons),
                         ),
                       ),
 
-                      LinearPercentIndicator(
-                        width: 100,
-                        lineHeight: 11.0,
-                        percent: donationProgress,
-                        barRadius: const Radius.circular(7),
-                        center: Text(
-                          '${((double.parse(widget.announcement.quantityDonated) / double.parse(widget.announcement.quantityNeeded)) * 100).toStringAsFixed(0)}%',
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(fontSize: 10.0),
+                      Expanded(
+                        child: LinearPercentIndicator(
+                          width: 140,
+                          lineHeight: 11.0,
+                          percent: donationProgress,
+                          barRadius: const Radius.circular(7),
+                          center: Text(
+                            '${((double.parse(widget.announcement.quantityDonated) / double.parse(widget.announcement.quantityNeeded)) * 100).toString()}%',
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(fontSize: 10.0),
+                          ),
+                          backgroundColor: AppColors.background,
+                          progressColor: AppColors.highicons,
                         ),
-                        backgroundColor: AppColors.background,
-                        progressColor: AppColors.highicons,
                       ),
                     ],
                   ),

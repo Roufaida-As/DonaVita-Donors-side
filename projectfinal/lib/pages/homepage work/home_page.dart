@@ -17,7 +17,16 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  String selectedWilaya = '1. Adrar'; // Variable to store the selected wilaya
+  bool withFilter = false;
   List<Announcement> announcements = [];
+  List<Announcement> originalAnnouncements = [];
+
+  @override
+  void initState() {
+    fetchAnnouncements();
+    super.initState();
+  }
 
   Future<void> fetchAnnouncements() async {
     try {
@@ -26,31 +35,46 @@ class _HomePageState extends State<HomePage> {
       if (mounted) {
         setState(() {
           announcements = fetchedAnnouncements;
+          originalAnnouncements = fetchedAnnouncements;
         });
       }
     } catch (e) {
       if (kDebugMode) {
-        print('debug: $Error fetching announcements');
+        print(e);
       }
     }
+  }
+
+  void filterAnnouncementsByWilaya(String wilaya) {
+    setState(() {
+      announcements = originalAnnouncements
+          .where((announcement) => announcement.orgVille == wilaya)
+          .toList();
+    });
+  }
+
+  void resetFilter() {
+    setState(() {
+      announcements = originalAnnouncements;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     // Filter announcements based on category
-    List<Announcement> foodAnnouncements = announcements
-        .where((announcement) => announcement.category == 'food')
+    List<Announcement> foodAnnouncements = originalAnnouncements
+        .where((announcement) => announcement.category == 'Food')
         .toList();
-    List<Announcement> clothesAnnouncements = announcements
-        .where((announcement) => announcement.category == 'clothes')
+    List<Announcement> clothesAnnouncements = originalAnnouncements
+        .where((announcement) => announcement.category == 'Clothes')
         .toList();
-    List<Announcement> moneyAnnouncements = announcements
+    List<Announcement> moneyAnnouncements = originalAnnouncements
         .where((announcement) => announcement.category == 'money')
         .toList();
 
     return Scaffold(
         appBar: AppBar(
-           automaticallyImplyLeading: false,
+          automaticallyImplyLeading: false,
           title: const Text(
             "Donations",
             textAlign: TextAlign.left,
@@ -138,29 +162,153 @@ class _HomePageState extends State<HomePage> {
                         ))
                   ],
                 ),
-                Expanded(
-                    child: FutureBuilder(
-                  future: fetchAnnouncements(),
-                  builder: ((context, snapshot) {
-                    return ListView.builder(
-                      itemCount: announcements.length,
-                      itemBuilder: (context, index) {
-                        return SafeArea(
-                          child: AnnonceCard(
-                              announcement: announcements[index],
-                              onDetailsPressed: () =>
-                                  Navigator.of(context).push(
-                                    MaterialPageRoute(
-                                        builder: (BuildContext context) =>
-                                            DetailsPage(
-                                                annonce: announcements[index])),
-                                  )),
-                        );
+                const SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    IconButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: AppColors.containercolor,
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          withFilter = !withFilter;
+                          if (!withFilter) {
+                            resetFilter(); // Reset filter when switching to without filter mode
+                          }
+                        });
                       },
-                    );
-                  }),
-                ))
+                      icon: withFilter
+                          ? const Icon(
+                              Icons.filter_alt_outlined,
+                              color: AppColors.icons,
+                            )
+                          : const Icon(
+                              Icons.filter_alt_off_outlined,
+                              color: AppColors.icons,
+                            ),
+                    ),
+                    withFilter
+                        ? Expanded(
+                            child: DropdownButton<String>(
+                              value: selectedWilaya,
+                              onChanged: (String? newValue) {
+                                setState(() {
+                                  selectedWilaya = newValue!;
+
+                                  filterAnnouncementsByWilaya(selectedWilaya);
+                                });
+                              },
+                              items: _buildWilayasDropdownItems(),
+                              hint: const Text("Select your wilaya"),
+                              padding: const EdgeInsets.all(12),
+                              borderRadius: BorderRadius.circular(12),
+                              underline: Container(
+                                height: 1,
+                                color: AppColors.clear,
+                              ),
+                              iconEnabledColor: AppColors.icons,
+                              style: const TextStyle(
+                                color: AppColors.icons,
+                                fontSize: 15,
+                              ),
+                              icon: const Icon(Icons.arrow_drop_down),
+                              isExpanded: true,
+                            ),
+                          )
+                        : const SizedBox(
+                            height: 0,
+                          ),
+                  ],
+                ),
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: announcements.length,
+                    itemBuilder: (context, index) {
+                      return AnnonceCard(
+                        announcement: announcements[index],
+                        onDetailsPressed: () => Navigator.of(context).push(
+                          MaterialPageRoute(
+                              builder: (BuildContext context) =>
+                                  DetailsPage(annonce: announcements[index])),
+                        ),
+                      );
+                    },
+                  ),
+                )
               ])),
         ));
+  }
+
+  List<DropdownMenuItem<String>> _buildWilayasDropdownItems() {
+    List<String> wilayasList = [
+      "1. Adrar",
+      "2. Chlef",
+      "3. Laghouat",
+      "4. Oum El Bouaghi",
+      "5. Batna",
+      "6. Bejaia",
+      "7. Biskra",
+      "8. Bechar",
+      "9. Blida",
+      "10. Bouira",
+      "11. Tamanghasset",
+      "12. Tebessa",
+      "13. Tlemcen",
+      "14. Tiaret",
+      "15. Tizi Ouzou",
+      "16. Algiers",
+      "17. Djelfa",
+      "18. Jijel",
+      "19. Setif",
+      "20. Saida",
+      "21. Skikda",
+      "22. Sidi Bel Abbes",
+      "23. Annaba",
+      "24. Guelma",
+      "25. Constantine",
+      "26. Medea",
+      "27. Mostaganem",
+      "28. M'sila",
+      "29. Mascara",
+      "30. Ouargla",
+      "31. Oran",
+      "32. El Bayadh",
+      "33. Illizi",
+      "34. Bordj Bou Arreridj",
+      "35. Boumerdes",
+      "36. El Tarf",
+      "37. Tindouf",
+      "38. Tissemsilt",
+      "39. El Oued",
+      "40. Khenchela",
+      "41. Souk Ahras",
+      "42. Tipaza",
+      "43. Mila",
+      "44. Ain Defla",
+      "45. Naama",
+      "46. Ain Temouchent",
+      "47. Ghardaia",
+      "48. Relizane",
+      "49. El M'ghair",
+      "50. Ouled Djellal",
+      "51. Bordj Badji Mokhtar",
+      "52. Beni Abbes",
+      "53. Timimoun",
+      "54. Touggourt",
+      "55. Djanet",
+      "56. In Salah",
+      "57. In Guezzam",
+      "58. El Menia",
+    ];
+
+    return wilayasList.map((String wilaya) {
+      return DropdownMenuItem<String>(
+        value: wilaya,
+        child: Text(wilaya),
+      );
+    }).toList();
   }
 }

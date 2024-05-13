@@ -1,8 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_core/get_core.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 import 'package:projectfinal/Theme/colors.dart';
 import 'package:projectfinal/components/button.dart';
+import 'package:projectfinal/components/dialog.dart';
 import 'package:projectfinal/pages/loginwork/login_screen.dart';
+
 
 // ignore: camel_case_types
 class forgetPassword extends StatefulWidget {
@@ -29,31 +33,11 @@ class _forgetPasswordState extends State<forgetPassword> {
         await FirebaseAuth.instance.sendPasswordResetEmail(
           email: emailcontroller.text.trim(),
         );
-
-        // Show success message or navigate to a success screen
-        // ignore: use_build_context_synchronously
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('Password reset email sent',
-                style: TextStyle(color: AppColors.highicons)),
-            backgroundColor: AppColors.icons,
-          ),
-        );
-        // ignore: use_build_context_synchronously
-        Navigator.of(context).push(MaterialPageRoute(
-            builder: (BuildContext context) => const LoginPage()));
+        Dialogs.showSnackBar('Success', 'Password reset email sent', false);
+        Get.to(() => const LoginPage());
       } catch (e) {
-        // Show error message
-        // ignore: use_build_context_synchronously
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text(
-              'Failed to send reset email. Please try again.',
-              style: TextStyle(color: AppColors.highicons),
-            ),
-            backgroundColor: AppColors.icons,
-          ),
-        );
+        Dialogs.showSnackBar(
+            'Error', 'Failed to send reset email. Please try again.', true);
       }
     }
   }
@@ -76,7 +60,7 @@ class _forgetPasswordState extends State<forgetPassword> {
           child: Column(
             children: [
               //logo
-              Image.asset("assets/Icons/logo 2.png"),
+              Image.asset("assets/logo 2.png"),
               const SizedBox(
                 height: 10,
               ),
@@ -94,7 +78,7 @@ class _forgetPasswordState extends State<forgetPassword> {
 
               const SizedBox(height: 20),
 
-              Image.asset("assets/Icons/Vector.png"),
+              Image.asset("assets/exclamation.png"),
 
               const SizedBox(height: 20),
 
@@ -130,20 +114,25 @@ class _forgetPasswordState extends State<forgetPassword> {
                   child: TextFormField(
                     controller: emailcontroller,
                     style: const TextStyle(fontSize: 15),
-                    decoration: const InputDecoration(
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(12)),
-                          borderSide:
-                              BorderSide(color: AppColors.clear, width: 2)),
-                      prefixIcon: Icon(
-                        Icons.email_outlined,
-                        color: AppColors.icons,
-                      ),
-                      hintText: 'Enter your email',
-                      hintStyle: TextStyle(fontSize: 14),
-                      fillColor: AppColors.background,
-                      filled: true,
-                    ),
+                    decoration: InputDecoration(
+                        contentPadding: const EdgeInsets.all(12),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                          borderSide: const BorderSide(
+                              color: AppColors.icons, width: 2.16),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                          borderSide: const BorderSide(
+                              color: AppColors.icons, width: 2.16),
+                        ),
+                        hintText: "Enter your organisation email",
+                        hintStyle: const TextStyle(
+                            color: AppColors.smalltext, fontSize: 15),
+                        prefixIcon: const Icon(
+                          Icons.email_outlined,
+                          color: AppColors.icons,
+                        )),
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     validator: (value) {
                       if (!RegExp(
@@ -168,8 +157,7 @@ class _forgetPasswordState extends State<forgetPassword> {
               ),
 
               //submit button
-
-              Button(onTap: _resetPassword, buttonText: "Submit"),
+              Button(onTap: _resetPassword, buttonText: "Submit")
             ],
           ),
         ),

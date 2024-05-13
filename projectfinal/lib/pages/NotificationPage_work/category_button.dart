@@ -1,12 +1,13 @@
-// ignore: file_names
 import 'package:flutter/material.dart';
 import 'package:projectfinal/Theme/colors.dart';
+
 class CategoryButton extends StatelessWidget {
   final String label;
   final bool isSelected;
   final VoidCallback onSelect;
 
-  const CategoryButton({super.key, 
+  const CategoryButton({
+    super.key,
     required this.label,
     required this.isSelected,
     required this.onSelect,

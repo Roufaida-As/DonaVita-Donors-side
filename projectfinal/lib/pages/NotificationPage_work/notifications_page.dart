@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:projectfinal/Theme/colors.dart';
-import 'package:projectfinal/pages/NotificationPage_work/CategoryButton.dart';
-import 'package:projectfinal/pages/NotificationPage_work/RecentContent.dart';
-import 'package:projectfinal/pages/NotificationPage_work/FavoriteContent.dart';
+import 'package:projectfinal/pages/NotificationPage_work/category_button.dart';
+import 'package:projectfinal/pages/NotificationPage_work/favorite_content.dart';
+import 'package:projectfinal/pages/NotificationPage_work/recent_content.dart';
 
 class NotificationPage extends StatefulWidget {
   const NotificationPage({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _NotificationPageState createState() => _NotificationPageState();
 }
 
@@ -30,8 +31,9 @@ class _NotificationPageState extends State<NotificationPage> {
         title: const Text(
           'Notifications',
           style: TextStyle(
-            color: AppColors.highicons,
-            fontFamily: 'Nunito',
+            fontSize: 25,
+              color: AppColors.highicons,
+              fontWeight: FontWeight.bold
           ),
         ),
       ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:projectfinal/Theme/Colors.dart';
+import 'package:projectfinal/Theme/colors.dart';
 import 'package:projectfinal/pages/homepage%20work/fomulaire_service.dart';
-import 'package:projectfinal/pages/homepage%20work/Mytextfield.dart';
+import 'package:projectfinal/pages/homepage%20work/mytext_field.dart';
 import 'package:projectfinal/pages/homepage%20work/annonce_model.dart';
 import 'package:projectfinal/pages/homepage%20work/details_page.dart';
 
@@ -20,7 +20,6 @@ class FormotherPage extends StatefulWidget {
 class _FormotherPageState extends State<FormotherPage> {
   late Formulaireservice formulaireservice;
   FirebaseFirestore db = FirebaseFirestore.instance;
-
 
   @override
   void initState() {
@@ -260,12 +259,18 @@ class _FormotherPageState extends State<FormotherPage> {
                             height: 45,
                           ),
                           GestureDetector(
-                            onTap: () async{
-                              
-                        showDialog(context: context, builder: (context){
-return Center(child: LoadingAnimationWidget.prograssiveDots(color: AppColors.icons, size: 100),);
-                        },);
-                            
+                            onTap: () async {
+                              showDialog(
+                                context: context,
+                                builder: (context) {
+                                  return Center(
+                                    child:
+                                        LoadingAnimationWidget.prograssiveDots(
+                                            color: AppColors.icons, size: 100),
+                                  );
+                                },
+                              );
+
                               await formulaireservice.addFormulaire(
                                   namecontroller.text,
                                   phonenumbercontroller.text,
@@ -279,7 +284,7 @@ return Center(child: LoadingAnimationWidget.prograssiveDots(color: AppColors.ico
                                       _counter;
                               setState(() {
                                 db
-                                    .collection('Organisations')
+                                    .collection('organisationsAsUsers')
                                     .doc(widget.annonce.orgId)
                                     .collection('annonces')
                                     .doc(widget.annonce.annonceId)
@@ -287,18 +292,19 @@ return Center(child: LoadingAnimationWidget.prograssiveDots(color: AppColors.ico
                                   "quantityDonated": newquantity.toString()
                                 });
                               });
-                               Navigator.of(context, rootNavigator: true).pop();
-                                 
-                             Navigator.of(context).pushReplacement(
-              MaterialPageRoute(
-                  builder: (BuildContext context) =>
-                      const HomePage()),
-            );
+                              // ignore: use_build_context_synchronously
+                              Navigator.of(context, rootNavigator: true).pop();
+
+                              // ignore: use_build_context_synchronously
+                              Navigator.of(context).pushReplacement(
+                                MaterialPageRoute(
+                                    builder: (BuildContext context) =>
+                                        const HomePage()),
+                              );
 
                               setState(() {
                                 _counter = 0;
                               });
-                             
                             },
                             child: Container(
                               width: 140,
@@ -320,7 +326,6 @@ return Center(child: LoadingAnimationWidget.prograssiveDots(color: AppColors.ico
                               ),
                             ),
                           ),
-                         
                         ],
                       ),
                     )

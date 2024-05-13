@@ -1,11 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:projectfinal/Theme/Colors.dart';
-import 'package:projectfinal/components/bottom_nav_bar.dart';
+import 'package:projectfinal/Theme/colors.dart';
 import 'package:projectfinal/pages/chat%20work/chat_page.dart';
 import 'package:projectfinal/pages/homepage%20work/home_page.dart';
-import 'package:projectfinal/pages/NotificationPage_work/NotificationPage.dart';
-import 'package:projectfinal/pages/profile_page.dart';
+import 'package:projectfinal/pages/NotificationPage_work/notifications_page.dart';
+import 'package:projectfinal/profile%20work/profile_page.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
