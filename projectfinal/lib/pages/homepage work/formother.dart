@@ -4,10 +4,13 @@ import 'package:projectfinal/pages/homepage%20work/fomulaire_service.dart';
 import 'package:projectfinal/pages/homepage%20work/mytext_field.dart';
 import 'package:projectfinal/pages/homepage%20work/annonce_model.dart';
 import 'package:projectfinal/pages/homepage%20work/details_page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:projectfinal/pages/homepage%20work/home_page.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:projectfinal/profile%20work/donator_service.dart';
+import 'package:projectfinal/profile%20work/profile_page.dart';
 
 class FormotherPage extends StatefulWidget {
   final Announcement annonce;
@@ -18,7 +21,9 @@ class FormotherPage extends StatefulWidget {
 }
 
 class _FormotherPageState extends State<FormotherPage> {
+
   late Formulaireservice formulaireservice;
+
   FirebaseFirestore db = FirebaseFirestore.instance;
 
   @override
@@ -59,6 +64,7 @@ class _FormotherPageState extends State<FormotherPage> {
             fontSize: 32,
             color: AppColors.highicons,
             fontWeight: FontWeight.bold,
+            fontFamily: 'Nunito',
           ),
         ),
         leading: GestureDetector(
@@ -110,32 +116,36 @@ class _FormotherPageState extends State<FormotherPage> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Row(
-                          children: [
-                            Container(
-                                height: 60,
-                                width: 60,
-                                decoration:
-                                    const BoxDecoration(shape: BoxShape.circle),
-                                child: Image.network(
-                                    widget.annonce.organizationLogoUrl,
-                                    height: 60,
-                                    width: 60)),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 40, left: 5),
-                              child: Text(
-                                widget.annonce.organizationName,
-                                style: const TextStyle(
-                                    fontFamily: 'Roboto',
-                                    fontSize: 24,
-                                    fontWeight: FontWeight.bold,
-                                    color: AppColors.icons),
-                              ),
-                            )
-                          ],
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                        
+                            children: [
+                              Container(
+                                  height: 60,
+                                  width: 60,
+                                  decoration:
+                                      const BoxDecoration(shape: BoxShape.circle),
+                                  child: Image.network(
+                                      widget.annonce.organizationLogoUrl,
+                                      height: 70,
+                                      width: 70,fit: BoxFit.cover,)),
+                                      SizedBox(width: 5,),
+                             
+                                 Text(
+                                  widget.annonce.organizationName,
+                                  style: const TextStyle(
+                                      fontFamily: 'Roboto',
+                                      fontSize: 24,
+                                      fontWeight: FontWeight.bold,
+                                      color: AppColors.icons),
+                                ),
+                              
+                            ],
+                          ),
                         ),
                         const SizedBox(
-                          height: 15,
+                          height: 10,
                         ),
                         Padding(
                           padding: const EdgeInsets.only(left: 30.0),
@@ -270,28 +280,20 @@ class _FormotherPageState extends State<FormotherPage> {
                                   );
                                 },
                               );
-
-                              await formulaireservice.addFormulaire(
+FirestoreService fs = FirestoreService();
+  String? userId = await fs.getCurrentUserId();
+                              await formulaireservice.addDonnation(
                                   namecontroller.text,
                                   phonenumbercontroller.text,
                                   adresscontroller.text,
-                                  _counter.toString());
+                                  _counter.toString(),
+                                  widget.annonce.orgId,
+                                 userId!,
+                                  );
                               phonenumbercontroller.clear();
                               adresscontroller.clear();
                               namecontroller.clear();
-                              int newquantity =
-                                  int.parse(widget.annonce.quantityDonated) +
-                                      _counter;
-                              setState(() {
-                                db
-                                    .collection('organisationsAsUsers')
-                                    .doc(widget.annonce.orgId)
-                                    .collection('annonces')
-                                    .doc(widget.annonce.annonceId)
-                                    .update({
-                                  "quantityDonated": newquantity.toString()
-                                });
-                              });
+                             
                               // ignore: use_build_context_synchronously
                               Navigator.of(context, rootNavigator: true).pop();
 

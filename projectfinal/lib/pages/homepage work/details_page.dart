@@ -41,7 +41,7 @@ class _DetailsPageState extends State<DetailsPage> {
           "Details",
           textAlign: TextAlign.left,
           style: TextStyle(
-            fontSize: 30,
+            fontSize: 32,
             fontFamily: 'Nunito',
             color: AppColors.highicons,
             fontWeight: FontWeight.bold,
@@ -97,8 +97,11 @@ class _DetailsPageState extends State<DetailsPage> {
                                   ],
                                 ),
                               ),
-                              child: Image.network(widget.annonce.imageUrl,
-                                  fit: BoxFit.cover),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(10),
+                                child: Image.network(widget.annonce.imageUrl,
+                                    fit: BoxFit.cover),
+                              ),
                             ),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
