@@ -4,21 +4,27 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class Formulaireservice {
   final String orgId;
   final String annId;
-  
 
-  Formulaireservice(this.orgId, this.annId, );
+  Formulaireservice(
+    this.orgId,
+    this.annId,
+  );
 
   CollectionReference get formulaireCollection {
     return FirebaseFirestore.instance
-        .collection('Organisations')
+        .collection('organisationsAsUsers')
         .doc(orgId)
         .collection('annonces')
         .doc(annId)
-        .collection('Formulaire');
+        .collection('Donations');
   }
 
   Future<void> addFormulaire(
-      String fullname, String phonenumber, String adress, String quantitydonated,) {
+    String fullname,
+    String phonenumber,
+    String adress,
+    String quantitydonated,
+  ) {
     return formulaireCollection.add({
       'fullname': fullname,
       'phonenumber': phonenumber,
@@ -26,5 +32,4 @@ class Formulaireservice {
       'quantitydonated': quantitydonated,
     });
   }
- 
 }

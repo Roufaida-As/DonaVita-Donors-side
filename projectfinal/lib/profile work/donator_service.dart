@@ -7,10 +7,10 @@ import 'package:projectfinal/profile%20work/donator_model.dart';
 class FirestoreService {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final FirebaseAuth _auth = FirebaseAuth.instance;
-  Future<Donator?> getOrganisationById(String orgId) async {
+  Future<Donator?> getDonatorById(String id) async {
     try {
       DocumentSnapshot documentSnapshot =
-          await _firestore.collection('users').doc(orgId).get();
+          await _firestore.collection('users').doc(id).get();
 
       if (documentSnapshot.exists) {
         Map<String, dynamic> data =
@@ -26,7 +26,7 @@ class FirestoreService {
         );
       } else {
         Dialogs.showSnackBar(
-            'Error', 'Donator with ID $orgId does not exist.', true);
+            'Error', 'Donator with ID $id does not exist.', true);
         return null;
       }
     } catch (error) {

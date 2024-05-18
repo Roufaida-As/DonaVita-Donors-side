@@ -30,7 +30,7 @@ class _EditProfileState extends State<EditProfile> {
     String? userId = await firestoreService.getCurrentUserId();
     try {
       if (userId != null) {
-        Donator? donator = await firestoreService.getOrganisationById(userId);
+        Donator? donator = await firestoreService.getDonatorById(userId);
         if (mounted) {
           setState(() {
             this.donator = donator;
