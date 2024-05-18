@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:projectfinal/Theme/colors.dart';
@@ -81,8 +82,7 @@ class RecentContent extends StatelessWidget {
 
                     final orgName = orgData['fullname'] ?? 'not available';
                     final orgLogoUrl = orgData['logoURL'] ?? '';
-
-                    final announcement = Announcement(
+final announcement = Announcement(
                       organizationName: orgName,
                       organizationLogoUrl: orgLogoUrl,
                       category: category,

@@ -80,7 +80,7 @@ class _ProfilePageState extends State<ProfilePage> {
           children: [
             Padding(
                 padding: const EdgeInsets.all(10.0),
-                child: _imageFile == null
+                child: isLogoHidden
                     ? Container(
                         margin: const EdgeInsets.only(left: 10),
                         width: 140,
@@ -136,8 +136,8 @@ class _ProfilePageState extends State<ProfilePage> {
                               .transparent, // Set a transparent background color
                         ),
                         child: ClipOval(
-                          child: Image.file(
-                            (File(_imageFile?.path ?? "")),
+                          child: Image.network(
+                            donator?.userPic ?? "",
 
                             width: 140,
                             height: 140,

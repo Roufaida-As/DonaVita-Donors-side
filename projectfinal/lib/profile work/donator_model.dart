@@ -2,7 +2,6 @@ class Donator {
   final String userName;
   final String userEmail;
   final String userPic;
-
   final String phoneNumber;
   final String userId;
 

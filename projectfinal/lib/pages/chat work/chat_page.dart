@@ -20,7 +20,7 @@ class ChatPage extends StatelessWidget {
         ),
       ),
       body: ListView.builder(
-        itemCount: 10, // Replace with actual number of users
+        itemCount: 4, // Replace with actual number of users
         itemBuilder: (context, index) {
           return Padding(
             padding: const EdgeInsets.symmetric(vertical: 8.0),
@@ -55,14 +55,14 @@ class ChatPage extends StatelessWidget {
             child: Image.asset("assets/Icons/Ellipse 8.png"),
           ),
           title: Text(
-            'User $index',
+            'Organisation $index',
             style: const TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 18,
                 color: AppColors.icons),
           ),
           subtitle: Text(
-            'Last message from user $index',
+            'Last message from organisation $index',
             style: const TextStyle(
               color: Colors.black,
             ),

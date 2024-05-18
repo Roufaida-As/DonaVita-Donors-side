@@ -71,6 +71,9 @@ class _EditProfileState extends State<EditProfile> {
                 child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
+                  const SizedBox(
+                    height: 40,
+                  ),
                   // your logo
                   Container(
                     margin: const EdgeInsets.only(left: 10),

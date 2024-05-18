@@ -38,9 +38,7 @@ class _AnnouncementItemState extends State<AnnouncementItem> {
         ));
       },
       child: ListTile(
-        tileColor: _isClicked
-            ? (widget.isFirst ? AppColors.clear : AppColors.background)
-            : (widget.isFirst ? AppColors.clear : AppColors.background),
+        tileColor: widget.isFirst ? AppColors.clear : AppColors.background,
         leading: Stack(
           children: [
             CircleAvatar(
@@ -98,13 +96,16 @@ class _AnnouncementItemState extends State<AnnouncementItem> {
           ],
         ),
         trailing: IconButton(
-          icon:
-              Icon(Icons.star_border, color: _isStarred ? Colors.yellow : null),
+          icon: !_isStarred
+              ? const Icon(
+                  Icons.star_border,
+                )
+              : const Icon(Icons.star_border_sharp, color: AppColors.highicons),
           onPressed: () {
             setState(() {
+              _addToFavorites(widget.announcement);
               _isStarred = !_isStarred;
             });
-            _addToFavorites(widget.announcement);
           },
         ),
       ),

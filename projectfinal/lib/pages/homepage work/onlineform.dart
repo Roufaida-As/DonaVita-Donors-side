@@ -6,6 +6,7 @@ import 'package:projectfinal/pages/homepage%20work/mytext_field.dart';
 import 'package:projectfinal/pages/homepage%20work/annonce_model.dart';
 import 'package:projectfinal/pages/homepage%20work/home_page.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:projectfinal/profile%20work/donator_service.dart';
 
 // ignore: camel_case_types
 class onlineform extends StatefulWidget {
@@ -19,6 +20,7 @@ class onlineform extends StatefulWidget {
 // ignore: camel_case_types
 class _onlineformState extends State<onlineform> {
   late Formulaireservice formulaireservice;
+  FirestoreService fs = FirestoreService();
   FirebaseFirestore db = FirebaseFirestore.instance;
   @override
   void initState() {
@@ -115,24 +117,17 @@ class _onlineformState extends State<onlineform> {
                   },
                 );
 
-                await formulaireservice.addFormulaire(
+                await formulaireservice.addDonnation(
                     namecontroller.text,
                     phonenumbercontroller.text,
                     adresscontroller.text,
-                    quantitycontroller.text);
+                    quantitycontroller.text,
+                    widget.annonce.orgId,
+                    fs.getCurrentUserId().toString(),);
                 phonenumbercontroller.clear();
                 adresscontroller.clear();
                 namecontroller.clear();
-                int newquantity = int.parse(widget.annonce.quantityDonated) +
-                    int.parse(quantitycontroller.text);
-                setState(() {
-                  db
-                      .collection('organisationsAsUsers')
-                      .doc(widget.annonce.orgId)
-                      .collection('annonces')
-                      .doc(widget.annonce.annonceId)
-                      .update({"quantityDonated": newquantity.toString()});
-                });
+            
                 // ignore: use_build_context_synchronously
                 Navigator.of(context, rootNavigator: true).pop();
 

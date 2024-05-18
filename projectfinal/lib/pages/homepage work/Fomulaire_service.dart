@@ -19,17 +19,16 @@ class Formulaireservice {
         .collection('Donations');
   }
 
-  Future<void> addFormulaire(
-    String fullname,
-    String phonenumber,
-    String adress,
-    String quantitydonated,
-  ) {
+  Future<void> addDonnation(
+      String fullname, String phonenumber, String adress, String quantitydonated,String orgId,String userId) {
     return formulaireCollection.add({
       'fullname': fullname,
       'phonenumber': phonenumber,
       'adress': adress,
       'quantitydonated': quantitydonated,
+      'orgId':orgId,
+      'personId':userId,
+      'seen':false,
     });
   }
 }

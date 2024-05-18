@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:projectfinal/Theme/colors.dart';
+import 'package:projectfinal/pages/chat%20work/chat_room.dart';
 import 'package:projectfinal/pages/homepage%20work/formother.dart';
 import 'package:projectfinal/pages/homepage%20work/annonce_model.dart';
 
@@ -41,7 +43,7 @@ class _DetailsPageState extends State<DetailsPage> {
           "Details",
           textAlign: TextAlign.left,
           style: TextStyle(
-            fontSize: 30,
+            fontSize: 32,
             fontFamily: 'Nunito',
             color: AppColors.highicons,
             fontWeight: FontWeight.bold,
@@ -97,8 +99,11 @@ class _DetailsPageState extends State<DetailsPage> {
                                   ],
                                 ),
                               ),
-                              child: Image.network(widget.annonce.imageUrl,
-                                  fit: BoxFit.cover),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(10),
+                                child: Image.network(widget.annonce.imageUrl,
+                                    fit: BoxFit.cover),
+                              ),
                             ),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -291,18 +296,24 @@ class _DetailsPageState extends State<DetailsPage> {
                           decoration: BoxDecoration(
                               color: AppColors.highicons,
                               borderRadius: BorderRadius.circular(20)),
-                          child: const Padding(
-                            padding: EdgeInsets.only(
-                                top: 3.0, bottom: 3.0, left: 15.0, right: 15.0),
-                            child: Center(
-                                child: Text(
-                              "Contact us",
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontFamily: 'Nunito',
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.bold),
-                            )),
+                          child: GestureDetector(
+                            onTap: () => Get.to(() => const ChatRoom()),
+                            child: const Padding(
+                              padding: EdgeInsets.only(
+                                  top: 3.0,
+                                  bottom: 3.0,
+                                  left: 15.0,
+                                  right: 15.0),
+                              child: Center(
+                                  child: Text(
+                                "Contact us",
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontFamily: 'Nunito',
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.bold),
+                              )),
+                            ),
                           ))
                     ]),
                     const SizedBox(
