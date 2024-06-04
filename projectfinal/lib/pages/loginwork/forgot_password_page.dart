@@ -7,7 +7,6 @@ import 'package:projectfinal/components/button.dart';
 import 'package:projectfinal/components/dialog.dart';
 import 'package:projectfinal/pages/loginwork/login_screen.dart';
 
-
 // ignore: camel_case_types
 class forgetPassword extends StatefulWidget {
   const forgetPassword({super.key});
@@ -60,7 +59,7 @@ class _forgetPasswordState extends State<forgetPassword> {
           child: Column(
             children: [
               //logo
-              Image.asset("assets/logo 2.png"),
+              Image.asset("assets/Icons/logo 2.png"),
               const SizedBox(
                 height: 10,
               ),
@@ -78,7 +77,7 @@ class _forgetPasswordState extends State<forgetPassword> {
 
               const SizedBox(height: 20),
 
-              Image.asset("assets/exclamation.png"),
+              Image.asset("assets/Icons/exclamation.png"),
 
               const SizedBox(height: 20),
 
@@ -126,7 +125,7 @@ class _forgetPasswordState extends State<forgetPassword> {
                           borderSide: const BorderSide(
                               color: AppColors.icons, width: 2.16),
                         ),
-                        hintText: "Enter your organisation email",
+                        hintText: "Enter your email",
                         hintStyle: const TextStyle(
                             color: AppColors.smalltext, fontSize: 15),
                         prefixIcon: const Icon(

@@ -118,7 +118,7 @@ class _DetailsPageState extends State<DetailsPage> {
                                 Text(widget.annonce.organizationName,
                                     style: const TextStyle(
                                       fontFamily: 'Roboto',
-                                      fontSize: 15,
+                                      fontSize: 20,
                                       fontWeight: FontWeight.bold,
                                       color: AppColors.icons,
                                     )),

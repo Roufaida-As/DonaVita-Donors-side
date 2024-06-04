@@ -17,7 +17,6 @@ class Services {
     String password,
     String fullname,
     String phonenumber,
-   
   ) async {
     try {
       Dialogs.showLoadingDialog();
@@ -33,11 +32,11 @@ class Services {
         'email': email,
         'fullname': fullname,
         'phonenumber': phonenumber,
-        'pic':""
-       
+        'pic': ""
       });
-       Dialogs.showSnackBar('Success', 'signup successfully', false);
       Get.back();
+      Dialogs.showSnackBar('Success', 'signup successfully', false);
+
       Get.to(() => const VerifyEmail(), transition: Transition.fadeIn);
     } on FirebaseAuthException catch (e) {
       Get.back();
@@ -62,11 +61,9 @@ class Services {
     try {
       await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
-      Dialogs.showSnackBar('Success', 'login successfully', false);
       Get.back();
+      Dialogs.showSnackBar('Success', 'login successfully', false);
       Get.to(() => const HomeScreen(), transition: Transition.fadeIn);
-
-      
     } catch (e) {
       Get.back();
       Dialogs.showSnackBar('Error', 'Something went wrong !', true);
